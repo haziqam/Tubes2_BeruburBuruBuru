@@ -1,23 +1,22 @@
-﻿// See https://aka.ms/new-console-template for more information
-using System;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 
-namespace myproject
-{  
-    
-    class Program
+namespace src
+{
+    internal static class Program
     {
-        class TreasureHunt{
-            public int[,] Map;
-        
-            public TreasureHunt(){
-                Console.WriteLine("CTORRRRR");
-                Map=new int[10,10];
-            }
-
-        }
-        static void Main(string[] args)
+        /// <summary>
+        /// The main entry point for the application.
+        /// </summary>
+        [STAThread]
+        static void Main()
         {
-            TreasureHunt a=new TreasureHunt();
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+            Application.Run(new Form1());
         }
     }
 }
