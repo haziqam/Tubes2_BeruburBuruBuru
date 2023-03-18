@@ -12,8 +12,7 @@ namespace src
 
         public TreasureHunt()
         {
-            Console.WriteLine("CTORRRRR");
-            Map = new int[10, 10];
+
         }
 
         // public BFS()
