@@ -1,0 +1,17 @@
+D:\University\Tubes2_BeruburBuruBuru\src\bin\Debug\net7.0-windows\src.exe
+D:\University\Tubes2_BeruburBuruBuru\src\bin\Debug\net7.0-windows\src.deps.json
+D:\University\Tubes2_BeruburBuruBuru\src\bin\Debug\net7.0-windows\src.runtimeconfig.json
+D:\University\Tubes2_BeruburBuruBuru\src\bin\Debug\net7.0-windows\src.dll
+D:\University\Tubes2_BeruburBuruBuru\src\bin\Debug\net7.0-windows\src.pdb
+D:\University\Tubes2_BeruburBuruBuru\src\obj\Debug\net7.0-windows\src.csproj.AssemblyReference.cache
+D:\University\Tubes2_BeruburBuruBuru\src\obj\Debug\net7.0-windows\src.GUI.resources
+D:\University\Tubes2_BeruburBuruBuru\src\obj\Debug\net7.0-windows\src.csproj.GenerateResource.cache
+D:\University\Tubes2_BeruburBuruBuru\src\obj\Debug\net7.0-windows\src.GeneratedMSBuildEditorConfig.editorconfig
+D:\University\Tubes2_BeruburBuruBuru\src\obj\Debug\net7.0-windows\src.AssemblyInfoInputs.cache
+D:\University\Tubes2_BeruburBuruBuru\src\obj\Debug\net7.0-windows\src.AssemblyInfo.cs
+D:\University\Tubes2_BeruburBuruBuru\src\obj\Debug\net7.0-windows\src.csproj.CoreCompileInputs.cache
+D:\University\Tubes2_BeruburBuruBuru\src\obj\Debug\net7.0-windows\src.dll
+D:\University\Tubes2_BeruburBuruBuru\src\obj\Debug\net7.0-windows\refint\src.dll
+D:\University\Tubes2_BeruburBuruBuru\src\obj\Debug\net7.0-windows\src.pdb
+D:\University\Tubes2_BeruburBuruBuru\src\obj\Debug\net7.0-windows\src.genruntimeconfig.cache
+D:\University\Tubes2_BeruburBuruBuru\src\obj\Debug\net7.0-windows\ref\src.dll

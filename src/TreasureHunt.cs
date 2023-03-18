@@ -16,6 +16,8 @@ namespace src
             Map = new int[10, 10];
         }
 
-        // public: BFS, DFS
+        // public BFS()
+
+        // public DFS
     }
 }
