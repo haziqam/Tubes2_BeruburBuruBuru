@@ -44,7 +44,7 @@ namespace src {
         public char this[int row, int col]
         {
             get => map[row, col];
-            set => map[row,col] = value;
+            set => map[row, col] = value;
         }
     }
 
@@ -62,7 +62,19 @@ namespace src {
 
         public void reset()
         {
-            
+            for(int i = 0; i < nRow; i++)
+            {
+                for(int j = 0; j < nCol; j++)
+                {
+                    peta[i,j] = false;
+                }
+            }
+        }
+        
+        public bool this[int row, int col]
+        {
+            get => map[row, col];
+            set => map[row, col] = value;
         }
     }
 
