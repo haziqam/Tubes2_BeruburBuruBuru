@@ -15,3 +15,7 @@ D:\University\Tubes2_BeruburBuruBuru\src\obj\Debug\net7.0-windows\refint\src.dll
 D:\University\Tubes2_BeruburBuruBuru\src\obj\Debug\net7.0-windows\src.pdb
 D:\University\Tubes2_BeruburBuruBuru\src\obj\Debug\net7.0-windows\src.genruntimeconfig.cache
 D:\University\Tubes2_BeruburBuruBuru\src\obj\Debug\net7.0-windows\ref\src.dll
+D:\University\Tubes2_BeruburBuruBuru\src\obj\Debug\net7.0-windows\src.VisualizeMapGUI.resources
+D:\University\Tubes2_BeruburBuruBuru\src\obj\Debug\net7.0-windows\src.Properties.Resources.resources
+D:\University\Tubes2_BeruburBuruBuru\src\bin\Debug\net7.0-windows\FeatureToggle.Core.dll
+D:\University\Tubes2_BeruburBuruBuru\src\obj\Debug\net7.0-windows\src.csproj.CopyComplete
