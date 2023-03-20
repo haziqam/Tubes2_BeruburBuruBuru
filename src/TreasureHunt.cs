@@ -165,6 +165,7 @@ namespace src
                 foreach (Node node in list) {
                     Console.WriteLine("({0}, {1})", node.x, node.y);
                 }
+                Console.WriteLine("Node : "+countNodeBFS);
             }
         }
         public void BFSMain(){
