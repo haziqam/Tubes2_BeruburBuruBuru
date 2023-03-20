@@ -59,9 +59,6 @@ namespace src
             // Console.WriteLine("row"+row);
         }   
 
-        // public BFS()
-
-        // public DFS
 
         public string[,] ReadMatrixFromFile(string filePath) {
             // read all lines from file
