@@ -171,6 +171,71 @@ namespace src
             }
         }
 
+        private void DFS(){
+            int[] dx = {0, 0, -1, 1};//Prioritas : Kiri,Kanan,Bawah,Atas
+            int[] dy = {-1, 1, 0, 0};
+            int startX=0;
+            int startY=0;
+            bool[,] visited = new bool[row,col];
+            Stack<Node> stack = new Stack<Node>();
+            for (int i = 0; i < row; i++) {
+                for (int j = 0; j < col; j++) {      
+                    if (Map[i,j] == "K") {
+                        startX = i;
+                        startY = j;
+                        break;
+                    }
+
+                }
+            }
+            bool startlast= false;
+            Stack.Push(new Node(startX,startY,0, null));
+            visited[startX, startY] = true;
+            while (stack.Count>0){
+                Node temp=stack.Pop();
+                if (Map[temp.x,temp.y]=="T") {
+                    List<Node> path = new List<Node>();
+                    Map[temp.x,temp.y]="K";
+                    Map[startX,startY]="R";
+                    // if(list.Last()==temp){
+                    //     startlast=true;
+                    // }
+                    while (temp != null) {
+                        path.Add(temp);
+                        temp = temp.parent;
+                    }
+                    path.Reverse();
+                    foreach (var item in path)
+                    {    
+                        list.Add(item);   
+                    }
+                    for (int i=0;i<list.Count-1;i++){
+                        if(list[i].isEqual(list[i+1])){
+                            list.RemoveAt(i+1);
+                        }
+                    }
+                    break;
+                }
+                for (int i = 0; i < 4; i++) {
+                    int nx = temp.x + dx[i];
+                    int ny = temp.y + dy[i];
+                    
+                    if (IsValid(nx, ny, row, col) && !visited[nx, ny] && Map[nx,ny] != "X") {
+                        visited[nx, ny] = true;
+                        stack.Push(new Node(nx, ny, temp.steps + 1, temp));
+                        countNodeBFS++;
+                    }
+                }
+            }
+        
+        }
+
+        public void DFSTreasure(){
+            for (int i=0;i<countTreasure;i++){
+                DFS();
+            }
+        }
+
     }
 }
 
