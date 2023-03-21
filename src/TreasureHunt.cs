@@ -31,7 +31,7 @@ namespace src
     internal class TreasureHunt
     {
 
-        private string[,] Map;
+        private string[,] Map {get;}
         private List<Node> list;
         private int row;
         private int col;
@@ -40,24 +40,24 @@ namespace src
         public TreasureHunt()
         {
             Console.WriteLine("CTORRRRR");
-            Map = new string[100,100]; 
+            Map = new string[100, 100];
             Map = ReadMatrixFromFile("../src/FILE.txt");
             list = new List<Node>();
             row = Map.GetLength(0);
             col = Map.GetLength(1);
             for (int i = 0; i < row; i++) {
                 for (int j = 0; j < col; j++) {
-                    if (Map[i,j] == "T") {
+                    if (Map[i, j] == "T") {
                         countTreasure++;
                         break;
                     }
 
                 }
             }
-            countNodeBFS=0;
+            countNodeBFS = 0;
             // Console.WriteLine("col"+col);
             // Console.WriteLine("row"+row);
-        }   
+        }
 
 
         public string[,] ReadMatrixFromFile(string filePath) {

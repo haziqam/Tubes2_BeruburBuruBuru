@@ -75,7 +75,9 @@ namespace src
                            {'X', 'R', 'X', 'T'},
                            {'X', 'T', 'R', 'R'},
                            {'X', 'R', 'X', 'X'}};
+            int[,] PointSequence = { { 0, 0 }, { 0, 1 }, { 1, 1 }, { 2, 1 }, { 2, 2 }, { 2, 3 }, { 1, 3 } };
             mapGUI.fill_map(Map);
+            //mapGUI.show_progress(PointSequence, 500);
         }
 
         private void ofd_browseFile_FileOk(object sender, CancelEventArgs e)
