@@ -7,60 +7,151 @@ namespace src {
     class Peta
     {
         private char[,] peta;
-        public readonly int nRow;
-        public readonly int nCol;
+        public Position startPos { get; }
+        private readonly int nRow;
+        private readonly int nCol;
 
         public Peta(List<List<char>> petaList)
         {
-            peta = new char[petaList[0].Count, petaList.Count];
+            nRow = petaList.Count;
+            nCol = petaList[0].Count;
+
+            peta = new char[nRow, nCol];
+            for (int i = 0; i < nRow; i++)
+            {
+                for (int j = 0; j < nCol; j++)
+                {
+                    peta[i,j] = petaList[i][j];
+                }
+            }
         }
 
-        public isPosValid(Position x)
+        public Peta(Peta other)
         {
-            return (0 <= x.row && x.row < nRow) && (0 <= x.col && x.col < nCol);
+            nRow = other.nRow;
+            nCol = other.nCol;
+
+            peta = new char[nRow, nCol];
+            for (int i = 0; i < nRow; i++)
+            {
+                for (int j = 0; j < nCol; j++)
+                {
+                    peta[i,j] = other[i,j];
+                }
+            }
         }
 
-        public isUpValid(Position x)
-        {
-            return (0 <= x.row-1);
-        }
-
-        public isRightValid(Position x)
-        {
-            return (x.col+1 < nCol);
-        }
-
-        public isDownValid(Position x)
-        {
-            return (x.row+1 < nRow);
-        }
-
-        public isLeftValid(Position x)
-        {
-            return (0 <= x.col-1);
-        }
-
+        /* Selector */
         // public char this[int row, int col] => map[row, col];
         public char this[int row, int col]
         {
             get => map[row, col];
             set => map[row, col] = value;
         }
+
+        public (int, int) Size
+        {
+            get { return (this.nRow, this.nCol); }
+        }
+
+        /* Position checking */
+        public isPosInBound(Position x)
+        {
+            return (0 <= x.row && x.row < nRow) && (0 <= x.col && x.col < nCol);
+        }
+
+        public isUpValid(Position x)
+        {
+            if (0 <= x.row-1)
+            {
+                return peta[x.row, x.col] != TH.BLOCK;
+            }
+            return false;
+
+        }
+
+        public isRightValid(Position x)
+        {
+            if (x.col+1 < nCol)
+            {
+                return peta[x.row, x.col] != TH.BLOCK;
+            }
+            return false;
+        }
+
+        public isDownValid(Position x)
+        {
+            if (x.row+1 < nRow)
+            {
+                return peta[x.row, x.col] != TH.BLOCK;
+            }
+            return false;
+        }
+
+        public isLeftValid(Position x)
+        {
+            if (0 <= x.col-1)
+            {
+                return peta[x.row, x.col] != TH.BLOCK;
+            }
+            return false;
+        }
+
+        public bool isTreasure(Position x)
+        {
+            return peta[x.row, x.col] == TH.TREASURE;
+        }
+
+        public void setStart(Position x)
+        {
+            peta[startPos.row, startPos.col] = TH.PATH;
+            startPos = new Position(x);
+            peta[startPos.row, startPos.col] = TH.START;
+        }
+
+        public void setTreasure(Position x)
+        {
+            if (x.isEqual(startPos))
+            {
+                // do nothing, why set treasure at starting position
+            }
+            else
+            {
+                peta[x.row, x.col] = TH.TREASURE;
+            }
+        }
     }
 
     class PetaVisit
     {
         private bool[,] peta;
-        private nRow;
-        private nCol;
+        private int nRow;
+        private int nCol;
 
-        public char this[int row, int col]
+        public PetaVisit(int row, int col)
         {
-            get => map[row, col];
-            set => map[row,col] = value;
+            nRow = row;
+            nCol = col;
+            peta = new bool[nRow, nCol];
+            resetVisit();
         }
 
-        public void reset()
+        // public PetaVisit((int row, int col) size)
+        // {
+        //     nRow = size.row;
+        //     nCol = size.col;
+        //     peta = new bool[nRow, nCol];
+        // }
+        
+        /* Selector */
+        public bool this[int row, int col] => map[row, col];
+
+        public void visit(Position x)
+        {
+            peta[x.row, x.col] = true;
+        }
+
+        public void resetVisit()
         {
             for(int i = 0; i < nRow; i++)
             {
@@ -69,12 +160,6 @@ namespace src {
                     peta[i,j] = false;
                 }
             }
-        }
-        
-        public bool this[int row, int col]
-        {
-            get => map[row, col];
-            set => map[row, col] = value;
         }
     }
 
@@ -87,6 +172,17 @@ namespace src {
         {
             row = _row;
             col = _col;
+        }
+
+        public Position(Position other)
+        {
+            row = other.row;
+            col = other.col;
+        }
+
+        public bool isEqual(Position other)
+        {
+            return (this.row == other.row) && (this.col == other,col);
         }
 
         public Position up()
