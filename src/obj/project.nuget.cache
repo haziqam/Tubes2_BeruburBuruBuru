@@ -1,8 +1,21 @@
 {
   "version": 2,
-  "dgSpecHash": "iYqPZNwI2clUWn34AnKsMwI3B/nax2Bbc21tJCFvWp1kW+fMhR/EaYVMdqaLYyAiu/PLEADA9Wz4K1FIx3UqjA==",
+  "dgSpecHash": "1LQz4Wf0ZmjPVFNY6//ZrahW27QNaylHkxN424l0etmNcKoHjlgkRxXMLUKyyOhwn9p90VvhVRTjKkf4BNTPdQ==",
   "success": true,
   "projectFilePath": "D:\\University\\Tubes2_BeruburBuruBuru\\src\\src.csproj",
-  "expectedPackageFiles": [],
-  "logs": []
+  "expectedPackageFiles": [
+    "C:\\Users\\Haziq\\.nuget\\packages\\featuretoggle.core\\3.5.1\\featuretoggle.core.3.5.1.nupkg.sha512"
+  ],
+  "logs": [
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'FeatureToggle.Core 3.5.1' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net7.0-windows7.0'. This package may not be fully compatible with your project.",
+      "libraryId": "FeatureToggle.Core",
+      "targetGraphs": [
+        "net7.0-windows7.0"
+      ]
+    }
+  ]
 }

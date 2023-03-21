@@ -7,8 +7,19 @@
   "targets": {
     ".NETCoreApp,Version=v7.0": {
       "src/1.0.0": {
+        "dependencies": {
+          "FeatureToggle.Core": "3.5.1"
+        },
         "runtime": {
           "src.dll": {}
+        }
+      },
+      "FeatureToggle.Core/3.5.1": {
+        "runtime": {
+          "lib/portable-net40+sl50+wp81+wpa+win/FeatureToggle.Core.dll": {
+            "assemblyVersion": "3.3.0.0",
+            "fileVersion": "3.3.0.0"
+          }
         }
       }
     }
@@ -18,6 +29,13 @@
       "type": "project",
       "serviceable": false,
       "sha512": ""
+    },
+    "FeatureToggle.Core/3.5.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Kol2QTZa6BArJSTqp0Dr23bic0oAuk7IShjBpQFjec6/w0799ygcOT58KupKdnWhYY1aB93HhUkzZFv3LlqcVA==",
+      "path": "featuretoggle.core/3.5.1",
+      "hashPath": "featuretoggle.core.3.5.1.nupkg.sha512"
     }
   }
 }
