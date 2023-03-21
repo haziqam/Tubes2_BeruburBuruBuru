@@ -6,41 +6,49 @@ using System.Threading.Tasks;
 
 namespace src
 {
+    enum TH
+    {
+        START = 'K',
+        TREASURE = 'T',
+        PATH = 'R',
+        BLOCK = 'X'
+    };
     class Node {
-            public int x;
-            public int y;
-            public int steps;
+            public char choice;
             public Node? parent;
             
-            public Node(int x, int y, int steps, Node parent) {
-                this.x = x;
-                this.y = y;
-                this.steps = steps;
+            public Node(char choice, Node parent = null) {
+                this.choice = choice;
                 this.parent = parent;
             }
+
             // public Node(){
             //     this.x = -1;
             //     this.y = -1;
             //     this.steps = 0;
             //     this.parent = null;
             // }
+
             public bool isEqual(Node other){
-                return (this.x==other.x && this.y == other.y);
+                return (this.choice==other.choice && this.parent == other.parent);
             }
     }
+
     internal class TreasureHunt
     {
 
-        private string[,] Map;
-        private List<Node> list;
-        private int row;
-        private int col;
-        private int countTreasure;
+        private readonly Peta Map;
+
+        private readonly int countTreasure;
+
         private int countNodeBFS;
+
+        private List<Node> list;
+
         public TreasureHunt()
         {
             Console.WriteLine("CTORRRRR");
-            Map = new string[100,100]; 
+            Map = new char[100,100]; 
             Map = ReadMatrixFromFile("../src/FILE.txt");
             list = new List<Node>();
             row = Map.GetLength(0);
@@ -58,7 +66,6 @@ namespace src
             // Console.WriteLine("col"+col);
             // Console.WriteLine("row"+row);
         }   
-
 
         public string[,] ReadMatrixFromFile(string filePath) {
             // read all lines from file
@@ -82,6 +89,7 @@ namespace src
 
             return matrix;
         }
+
         public void displayMap(){
             for (int i = 0; i < Map.GetLength(0); i++) {
                 for (int j = 0; j < Map.GetLength(1); j++) {
@@ -90,15 +98,22 @@ namespace src
                 Console.WriteLine();
             }
         }
+
         static bool IsValid(int x, int y, int n, int m) {
             return x >= 0 && x < n && y >= 0 && y < m;
         }
 
+        public List<Node> BFSTreasureHunt(bool TSP = false){
+            Position oldStart = Map.startPos; // used for TSP toggle, return to initial starting position
+            Peta peta = new Peta(Map);
+            PetaVisit = new PetaVisit(Map.Size);
+
+            for (int i=0;i<countTreasure;i++){
+                BFS();
+            }
+        }
+
         public void BFS(){
-            int[] dx = {0, 0, -1, 1};//Prioritas : Kiri,Kanan,Bawah,Atas
-            int[] dy = {-1, 1, 0, 0};
-            int startX=0;
-            int startY=0;
             bool[,] visited = new bool[row,col];
             Queue<Node> queue = new Queue<Node>();
             for (int i = 0; i < row; i++) {
@@ -163,11 +178,6 @@ namespace src
                     Console.WriteLine("({0}, {1})", node.x, node.y);
                 }
                 Console.WriteLine("Node : "+countNodeBFS);
-            }
-        }
-        public void BFSMain(){
-            for (int i=0;i<countTreasure;i++){
-                BFS();
             }
         }
 
