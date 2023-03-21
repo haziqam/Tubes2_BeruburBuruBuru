@@ -30,12 +30,12 @@
         {
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -76,37 +76,27 @@
             this.panel1.Size = new System.Drawing.Size(403, 519);
             this.panel1.TabIndex = 3;
             // 
-            // button1
+            // label5
             // 
-            this.button1.Location = new System.Drawing.Point(81, 438);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(219, 57);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label5.ForeColor = System.Drawing.SystemColors.HighlightText;
+            this.label5.Location = new System.Drawing.Point(44, 226);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(88, 32);
+            this.label5.TabIndex = 5;
+            this.label5.Text = "Route: ";
             // 
-            // label1
+            // label4
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label1.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.label1.Location = new System.Drawing.Point(44, 44);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(132, 32);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Algorithm: ";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label2.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.label2.Location = new System.Drawing.Point(44, 89);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(65, 32);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "TSP: ";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label4.ForeColor = System.Drawing.SystemColors.HighlightText;
+            this.label4.Location = new System.Drawing.Point(44, 180);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(184, 32);
+            this.label4.TabIndex = 4;
+            this.label4.Text = "Execution time: ";
             // 
             // label3
             // 
@@ -120,27 +110,37 @@
             this.label3.Text = "Steps: ";
             this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
-            // label4
+            // label2
             // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label4.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.label4.Location = new System.Drawing.Point(44, 180);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(184, 32);
-            this.label4.TabIndex = 4;
-            this.label4.Text = "Execution time: ";
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label2.ForeColor = System.Drawing.SystemColors.HighlightText;
+            this.label2.Location = new System.Drawing.Point(44, 89);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(65, 32);
+            this.label2.TabIndex = 2;
+            this.label2.Text = "TSP: ";
+            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
-            // label5
+            // label1
             // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label5.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.label5.Location = new System.Drawing.Point(44, 226);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(88, 32);
-            this.label5.TabIndex = 5;
-            this.label5.Text = "Route: ";
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label1.ForeColor = System.Drawing.SystemColors.HighlightText;
+            this.label1.Location = new System.Drawing.Point(44, 44);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(132, 32);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "Algorithm: ";
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(81, 438);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(219, 57);
+            this.button1.TabIndex = 0;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
             // 
             // VisualizeMapGUI
             // 

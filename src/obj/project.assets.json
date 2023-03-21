@@ -2,34 +2,40 @@
   "version": 3,
   "targets": {
     "net7.0-windows7.0": {
-      "FeatureToggle.Core/3.5.1": {
+      "MetroSet_UI/2.0.0": {
         "type": "package",
         "compile": {
-          "lib/portable-net40+sl50+wp81+wpa+win/FeatureToggle.Core.dll": {}
+          "lib/netcoreapp3.1/MetroSet UI.dll": {}
         },
         "runtime": {
-          "lib/portable-net40+sl50+wp81+wpa+win/FeatureToggle.Core.dll": {}
-        }
+          "lib/netcoreapp3.1/MetroSet UI.dll": {}
+        },
+        "frameworkReferences": [
+          "Microsoft.WindowsDesktop.App.WindowsForms"
+        ]
       }
     }
   },
   "libraries": {
-    "FeatureToggle.Core/3.5.1": {
-      "sha512": "Kol2QTZa6BArJSTqp0Dr23bic0oAuk7IShjBpQFjec6/w0799ygcOT58KupKdnWhYY1aB93HhUkzZFv3LlqcVA==",
+    "MetroSet_UI/2.0.0": {
+      "sha512": "7FO1rFTiht/j+xdvyRBQOv3JL8yoKBwQrrBuA/Zbz98sNIhgpNDO977ZumAz6TTfbuIT/4waSHsFBp01cXDDIA==",
       "type": "package",
-      "path": "featuretoggle.core/3.5.1",
+      "path": "metroset_ui/2.0.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
-        "featuretoggle.core.3.5.1.nupkg.sha512",
-        "featuretoggle.core.nuspec",
-        "lib/portable-net40+sl50+wp81+wpa+win/FeatureToggle.Core.dll"
+        "LICENSE",
+        "MetroSet.png",
+        "lib/net45/MetroSet UI.dll",
+        "lib/netcoreapp3.1/MetroSet UI.dll",
+        "metroset_ui.2.0.0.nupkg.sha512",
+        "metroset_ui.nuspec"
       ]
     }
   },
   "projectFileDependencyGroups": {
     "net7.0-windows7.0": [
-      "FeatureToggle.Core >= 3.5.1"
+      "MetroSet_UI >= 2.0.0"
     ]
   },
   "packageFolders": {
@@ -71,9 +77,9 @@
       "net7.0-windows7.0": {
         "targetAlias": "net7.0-windows",
         "dependencies": {
-          "FeatureToggle.Core": {
+          "MetroSet_UI": {
             "target": "Package",
-            "version": "[3.5.1, )"
+            "version": "[2.0.0, )"
           }
         },
         "imports": [
@@ -98,17 +104,5 @@
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
       }
     }
-  },
-  "logs": [
-    {
-      "code": "NU1701",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Package 'FeatureToggle.Core 3.5.1' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net7.0-windows7.0'. This package may not be fully compatible with your project.",
-      "libraryId": "FeatureToggle.Core",
-      "targetGraphs": [
-        "net7.0-windows7.0"
-      ]
-    }
-  ]
+  }
 }

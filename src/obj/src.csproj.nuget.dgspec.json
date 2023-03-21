@@ -40,9 +40,9 @@
         "net7.0-windows7.0": {
           "targetAlias": "net7.0-windows",
           "dependencies": {
-            "FeatureToggle.Core": {
+            "MetroSet_UI": {
               "target": "Package",
-              "version": "[3.5.1, )"
+              "version": "[2.0.0, )"
             }
           },
           "imports": [

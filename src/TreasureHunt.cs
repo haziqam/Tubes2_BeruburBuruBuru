@@ -189,7 +189,7 @@ namespace src
                 }
             }
             bool startlast= false;
-            Stack.Push(new Node(startX,startY,0, null));
+            stack.Push(new Node(startX,startY,0, null));
             visited[startX, startY] = true;
             while (stack.Count>0){
                 Node temp=stack.Pop();
