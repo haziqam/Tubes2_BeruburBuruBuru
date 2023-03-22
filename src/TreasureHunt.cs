@@ -80,7 +80,7 @@ namespace src
         }
     }
 
-    public class TreasureHunt
+    class TreasureHunt
     {
         private readonly Peta Map;
 
