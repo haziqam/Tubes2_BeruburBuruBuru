@@ -13,19 +13,46 @@ namespace TreasureHunt
         public int nTreasure { get; }
         public Position startPos { get; }
 
-        public Peta(List<List<char>> petaList)
+        /* matrix must contain single character string only */
+        public Peta(string[,] matrix)
         {
-            nRow = petaList.Count;
-            nCol = petaList[0].Count;
-
+            nRow = matrix.Length;
+            nCol = matrix[0].Length;
+            nTreasure = 0;
+            
+            bool noStartSymbol = true;
             peta = new char[nRow, nCol];
             for (int i = 0; i < nRow; i++)
             {
                 for (int j = 0; j < nCol; j++)
                 {
-                    peta[i,j] = petaList[i][j];
+                    char inputSymbol = matrix[i,j][0];
+
+                    if(inputSymbol == TreasureSymbols.START)
+                    {
+                        if(noStartSymbol)
+                        {
+                            startPos = new Position(i,j);
+                            noStartSymbol = false;
+                        }
+                        else throw new InvalidStartSymbolException(i+1, j+1);   // no two starting point can exists
+                    }
+                    else if(inputSymbol == TreasureSymbols.TREASURE)
+                    {
+                        nTreasure++;
+                    }
+                    else if(inputSymbol != TreasureSymbols.PATH && inputSymbol != TreasureSymbols.BLOCK)
+                    {
+                        // input symbol != start, treasure, path, or even block
+                        throw new InvalidInputSymbolException(i+1, j+1);
+                    }
+
+                    // insert char into map
+                    peta[i,j] = matrix[i,j][0];
                 }
             }
+
+            if(noStartSymbol) throw new InvalidStartSymbolException();
         }
 
         public Peta(Peta other)
