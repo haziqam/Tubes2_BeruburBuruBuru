@@ -80,7 +80,7 @@ namespace src
         }
     }
 
-    internal class TreasureHunt
+    public class TreasureHunt
     {
         private readonly Peta Map;
 
@@ -90,7 +90,11 @@ namespace src
             Map = new Peta(matrix);
         }
 
+        /* Getters & setters */
         public char this[int row, int col] => Map[row, col];
+
+        public int Row => Map.nRow;
+        public int Col => Map.nCol;
 
         private string[,] ReadMatrixFromFile(string filePath) {
             // read all lines from file
