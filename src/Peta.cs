@@ -132,13 +132,14 @@ namespace TreasureHunt
 
         public void setTreasure(Position x)
         {
-            if (x.isEqual(startPos))
+            if (peta[x.row, x.col] == TreasureSymbols.START)
             {
-                // do nothing, why set treasure at starting position
+                // do nothing, why set treasure at starting position; also breaks the code
             }
             else
             {
                 peta[x.row, x.col] = TreasureSymbols.TREASURE;
+                nTreasure++;
             }
         }
     }
