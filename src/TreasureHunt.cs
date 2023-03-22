@@ -2,48 +2,69 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
-namespace src
+/* Adapted Treasure hunt for new data structure, using same algorithm as previous model */
+/* New data structure used for better modularity and data encapsulation */
+
+namespace TreasureHunt
 {
-    enum TH
+    public class InvalidInputSymbolException : Exception
     {
-        START = 'K',
-        TREASURE = 'T',
-        PATH = 'R',
-        BLOCK = 'X'
-    };
-    class Node {
-            public char choice;
-            public Node? parent;
-            
-            public Node(char choice, Node parent = null) {
-                this.choice = choice;
-                this.parent = parent;
-            }
+        public InvalidInputSymbolException(int row, int col)
+            : base("Invalid input symbol at line " + row + ", column " + col)
+        {
+        }
+    }
 
-            // public Node(){
-            //     this.x = -1;
-            //     this.y = -1;
-            //     this.steps = 0;
-            //     this.parent = null;
-            // }
+    public class TreasureNotConnectedException : Exception
+    {
+        public TreasureNotConnectedException()
+            : base("Treasure is not connected to starting point!")
+        {
+        }
+    }
 
-            public bool isEqual(Node other){
-                return (this.choice==other.choice && this.parent == other.parent);
-            }
+    static class TreasureSymbols
+    {
+        public static const HashSet<char> Symbols = {START, TREASURE, PATH, BLOCK};
+        public static const char START = 'K';
+        public static const char TREASURE = 'T';
+        public static const char PATH = 'R';
+        public static const char BLOCK = 'X';
+    }
+
+    static class Directions
+    {
+        public static const char UP = 'U';
+        public static const char RIGHT = 'R';
+        public static const char DOWN = 'D';
+        public static const char LEFT = 'L';
+        public static const char STARTDUMMY = 'S';
+    }
+
+    enum SearchType
+    {
+        BFS,
+        DFS
+    }
+
+    class Node
+    {
+        public readonly Position position;
+        public readonly char choice;
+        public readonly Node? parent;
+        
+        public Node(Position position, char choice, Node parent = null) {
+            this.position = position;
+            this.choice = choice;
+            this.parent = parent;
+        }
     }
 
     internal class TreasureHunt
     {
-
         private readonly Peta Map;
-
-        private readonly int countTreasure;
-
-        private int countNodeBFS;
-
-        private List<Node> list;
+        private 
 
         public TreasureHunt()
         {
@@ -62,12 +83,9 @@ namespace src
 
                 }
             }
-            countNodeBFS=0;
-            // Console.WriteLine("col"+col);
-            // Console.WriteLine("row"+row);
         }   
 
-        public string[,] ReadMatrixFromFile(string filePath) {
+        private string[,] ReadMatrixFromFile(string filePath) {
             // read all lines from file
             string[] lines = File.ReadAllLines(filePath);
 
@@ -99,153 +117,124 @@ namespace src
             }
         }
 
-        static bool IsValid(int x, int y, int n, int m) {
-            return x >= 0 && x < n && y >= 0 && y < m;
-        }
+        /* Path finding of all treasures with BFS, TSP toggle by default set to false,
+            returns list of directions (final route) and number of searches  done */
+        public (List<Node>, int) TreasureHunt(SearchType mode, bool TSP = false)
+        {
+            Position oldStart = Map.startPos;   // used for TSP toggle to return to initial starting position
+            Peta searchMap = new Peta(Map);     // create new map for marking
 
-        public List<Node> BFSTreasureHunt(bool TSP = false){
-            Position oldStart = Map.startPos; // used for TSP toggle, return to initial starting position
-            Peta peta = new Peta(Map);
-            PetaVisit = new PetaVisit(Map.Size);
-
-            for (int i=0;i<countTreasure;i++){
-                BFS();
-            }
-        }
-
-        public void BFS(){
-            bool[,] visited = new bool[row,col];
-            Queue<Node> queue = new Queue<Node>();
-            for (int i = 0; i < row; i++) {
-                for (int j = 0; j < col; j++) {      
-                    if (Map[i,j] == "K") {
-                        startX = i;
-                        startY = j;
-                        break;
-                    }
-
+            List<Node> path = new List<Node>();
+            int searchCount = 0;
+            // every treasure MUST BE connected to starting position, otherwise throw exception
+            if(mode = SearchType.BFS)
+            {
+                while (searchMap.nTreasure > 0)
+                {
+                    List<Node> addPath;
+                    int addCount;
+                    (addPath, addCount) = BFS(searchMap);
+                    path.AddRange(addPath);
+                    searchCount += addCount;
                 }
             }
-            bool startlast= false;
-            queue.Enqueue(new Node(startX,startY,0, null));
-            visited[startX, startY] = true;
-            while (queue.Count>0){
-                Node temp=queue.Dequeue();
-                if (Map[temp.x,temp.y]=="T") {
-                    List<Node> path = new List<Node>();
-                    Map[temp.x,temp.y]="K";
-                    Map[startX,startY]="R";
-                    // if(list.Last()==temp){
-                    //     startlast=true;
-                    // }
-                    while (temp != null) {
-                        path.Add(temp);
-                        temp = temp.parent;
-                    }
-                    path.Reverse();
-                    foreach (var item in path)
-                    {    
-                        list.Add(item);   
-                    }
-                    for (int i=0;i<list.Count-1;i++){
-                        if(list[i].isEqual(list[i+1])){
-                            list.RemoveAt(i+1);
-                        }
-                    }
-                    break;
-                }
+            else
+            {
+                while (searchMap.nTreasure > 0)
+                {
+                    List<Node> addPath;
+                    int addCount;
+                    (addPath, addCount) = DFS(searchMap);
+                    path.AddRange(addPath);
+                    searchCount += addCount;
+                } 
+            }
+
+            // TSP code
+
+            return (path, SearchCount);
+        }
+
+        private (List<Node>, int) BFS(Peta searchMap)
+        {
+            // initialize starting state
+            PetaVisit isVisited = new PetaVisit(Map.Size);
+
+            // initialize search count to -1 (exluding initial element of dummy node)
+            int searchCount = -1;
+            // initialize BFS Queue
+            Queue<Node> memo = new Queue<Node>();
+
+            // enqueue dummy initial search (starting position)
+            memo.Enqueue(new Node(searchMap.startPos, Directions.STARTDUMMY));
+            Node currNode;
+            Position currPos;
+            do
+            {
+                searchCount++;
+                currNode = memo.Dequeue();
+                currPos = currNode.position;
+
+                isVisited.visit(currPos);
+                
+                /* A good alternative for path decision making from previous version
+                int[] dx = {0, 0, -1, 1};   //Prioritas : Kiri,Kanan,Bawah,Atas
+                int[] dy = {-1, 1, 0, 0};
                 for (int i = 0; i < 4; i++) {
                     int nx = temp.x + dx[i];
                     int ny = temp.y + dy[i];
-                    
-                    if (IsValid(nx, ny, row, col) && !visited[nx, ny] && Map[nx,ny] != "X") {
-                        visited[nx, ny] = true;
-                        queue.Enqueue(new Node(nx, ny, temp.steps + 1, temp));
-                        countNodeBFS++;
-                    }
                 }
-            }
-        
-        }
+                however not used in current version due to current architecture & DS */
 
-        public void showPath(){
-            if (list == null) {
-            Console.WriteLine("Treasure not found!");
-            } else {
-                Console.WriteLine("Treasure found in {0} steps.", list.Count - 1);
-                Console.WriteLine("Path:");
-                foreach (Node node in list) {
-                    Console.WriteLine("({0}, {1})", node.x, node.y);
+                // checking priority: up, right, down, left (clockwise direction)
+                // check if going up is valid
+                if (searchMap.isUpValid(currPos))
+                {
+                    // check if grid has not been traversed before during this search
+                    if (!isVisited[currPos.coord]) memo.Enqueue(new Node(currPos.up(), Directions.UP, currNode));
                 }
-                Console.WriteLine("Node : "+countNodeBFS);
-            }
-        }
+                // check if going right is valid
+                if (searchMap.isRightValid(currPos))
+                {
+                    if (!isVisited[currPos.coord]) memo.Enqueue(new Node(currPos.right(), Directions.RIGHT, currNode));
+                }
+                // check if going down is valid
+                if (searchMap.isDownValid(currPos))
+                {
+                    if (!isVisited[currPos.coord]) memo.Enqueue(new Node(currPos.down(), Directions.DOWN, currNode));
+                }
+                // check if going left is valid
+                if (searchMap.isLeftValid(currPos))
+                {
+                    if (!isVisited[currPos.coord]) memo.Enqueue(new Node(currPos.left(), Directions.LEFT, currNode));
+                }
 
-        private void DFS(){
-            int[] dx = {0, 0, -1, 1};//Prioritas : Kiri,Kanan,Bawah,Atas
-            int[] dy = {-1, 1, 0, 0};
-            int startX=0;
-            int startY=0;
-            bool[,] visited = new bool[row,col];
-            Stack<Node> stack = new Stack<Node>();
-            for (int i = 0; i < row; i++) {
-                for (int j = 0; j < col; j++) {      
-                    if (Map[i,j] == "K") {
-                        startX = i;
-                        startY = j;
-                        break;
-                    }
+            } while(!searchMap.isTreasure(currPos) && (memo.Count != 0));
 
-                }
-            }
-            bool startlast= false;
-            Stack.Push(new Node(startX,startY,0, null));
-            visited[startX, startY] = true;
-            while (stack.Count>0){
-                Node temp=stack.Pop();
-                if (Map[temp.x,temp.y]=="T") {
-                    List<Node> path = new List<Node>();
-                    Map[temp.x,temp.y]="K";
-                    Map[startX,startY]="R";
-                    // if(list.Last()==temp){
-                    //     startlast=true;
-                    // }
-                    while (temp != null) {
-                        path.Add(temp);
-                        temp = temp.parent;
-                    }
-                    path.Reverse();
-                    foreach (var item in path)
-                    {    
-                        list.Add(item);   
-                    }
-                    for (int i=0;i<list.Count-1;i++){
-                        if(list[i].isEqual(list[i+1])){
-                            list.RemoveAt(i+1);
-                        }
-                    }
-                    break;
-                }
-                for (int i = 0; i < 4; i++) {
-                    int nx = temp.x + dx[i];
-                    int ny = temp.y + dy[i];
-                    
-                    if (IsValid(nx, ny, row, col) && !visited[nx, ny] && Map[nx,ny] != "X") {
-                        visited[nx, ny] = true;
-                        stack.Push(new Node(nx, ny, temp.steps + 1, temp));
-                        countNodeBFS++;
-                    }
-                }
-            }
-        
-        }
+            if (searchMap.isTreasure(currPos))
+            {
+                // set current position as new starting point for next BFS
+                searchMap.setStart(currPos);
 
-        public void DFSTreasure(){
-            for (int i=0;i<countTreasure;i++){
-                DFS();
+                // return list and searchcount
+                List<Node> path = new List<Node>();
+                while (currNode.choice != Directions.STARTDUMMY) {
+                    path.Add(currNode);
+                    currNode = currNode.parent;
+                }
+                path.Reverse();
+
+                return (path, searchCount);
+            }
+            else
+            {
+                throw new TreasureNotConnectedException();
             }
         }
 
+        private void DFS()
+        {
+        }
     }
 }
 
