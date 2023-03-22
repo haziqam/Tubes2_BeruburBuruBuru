@@ -3,21 +3,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace TreasureHunt
+namespace src
 {
     class Peta
     {
         private char[,] peta;
-        private readonly int nRow;
-        private readonly int nCol;
-        public int nTreasure { get; }
-        public Position startPos { get; }
+        public readonly int nRow;
+        public readonly int nCol;
+        public int nTreasure { get; private set; }
+        public Position startPos { get; private set; }
 
         /* matrix must contain single character string only */
         public Peta(string[,] matrix)
         {
-            nRow = matrix.Length;
-            nCol = matrix[0].Length;
+            nRow = matrix.GetLength(0);
+            nCol = matrix.GetLength(1);
             nTreasure = 0;
             
             bool noStartSymbol = true;
@@ -71,7 +71,7 @@ namespace TreasureHunt
         }
 
         /* Selector */
-        public char this[int row, int col] => map[row, col];
+        public char this[int row, int col] => peta[row, col];
         // public char this[int row, int col]
         // {
         //     get => map[row, col];
@@ -193,7 +193,7 @@ namespace TreasureHunt
         // }
         
         /* Selector */
-        public bool this[int row, int col] => map[row, col];
+        public bool this[int row, int col] => peta[row, col];
 
         public void visit(Position x)
         {

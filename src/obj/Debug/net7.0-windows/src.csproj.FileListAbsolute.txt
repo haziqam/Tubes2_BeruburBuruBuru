@@ -19,3 +19,4 @@ D:\University\Tubes2_BeruburBuruBuru\src\obj\Debug\net7.0-windows\src.Properties
 D:\University\Tubes2_BeruburBuruBuru\src\obj\Debug\net7.0-windows\src.csproj.CopyComplete
 D:\University\Tubes2_BeruburBuruBuru\src\bin\Debug\net7.0-windows\MetroSet UI.dll
 D:\University\Tubes2_BeruburBuruBuru\src\obj\Debug\net7.0-windows\src.FileInputGUI.resources
+D:\University\Tubes2_BeruburBuruBuru\src\obj\Debug\net7.0-windows\src.ErrorBox.resources

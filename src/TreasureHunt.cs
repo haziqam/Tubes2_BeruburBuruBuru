@@ -7,7 +7,7 @@ using System.Text;
 /* Adapted Treasure hunt for new data structure, using same algorithm as previous model */
 /* New data structure used for better modularity and data encapsulation */
 
-namespace TreasureHunt
+namespace src
 {
     public class InvalidInputSymbolException : Exception
     {
@@ -46,19 +46,19 @@ namespace TreasureHunt
     static class TreasureSymbols
     {
         // public static const HashSet<char> Symbols = {START, TREASURE, PATH, BLOCK};
-        public static const char START = 'K';
-        public static const char TREASURE = 'T';
-        public static const char PATH = 'R';
-        public static const char BLOCK = 'X';
+        public const char START = 'K';
+        public const char TREASURE = 'T';
+        public const char PATH = 'R';
+        public const char BLOCK = 'X';
     }
 
     static class Directions
     {
-        public static const char UP = 'U';
-        public static const char RIGHT = 'R';
-        public static const char DOWN = 'D';
-        public static const char LEFT = 'L';
-        public static const char STARTDUMMY = 'S';
+        public const char UP = 'U';
+        public const char RIGHT = 'R';
+        public const char DOWN = 'D';
+        public const char LEFT = 'L';
+        public const char STARTDUMMY = 'S';
     }
 
     enum SearchType
@@ -117,8 +117,8 @@ namespace TreasureHunt
         }
 
         public void displayMap(){
-            for (int i = 0; i < Map.GetLength(0); i++) {
-                for (int j = 0; j < Map.GetLength(1); j++) {
+            for (int i = 0; i < Map.nRow; i++) {
+                for (int j = 0; j < Map.nCol; j++) {
                     Console.Write(Map[i, j] + " ");
                 }
                 Console.WriteLine();
@@ -127,7 +127,7 @@ namespace TreasureHunt
 
         /* Path finding of all treasures with BFS, TSP toggle by default set to false,
             returns list of directions (final route) and number of searches  done */
-        public (List<Node>, int) TreasureHunt(SearchType mode, bool TSP = false)
+        public (List<Node>, int) StartHunting(SearchType mode, bool TSP = false)
         {
             Position oldStart = Map.startPos;   // used for TSP toggle to return to initial starting position
             Peta searchMap = new Peta(Map);     // create new map for marking
@@ -135,7 +135,7 @@ namespace TreasureHunt
             List<Node> path = new List<Node>();
             int searchCount = 0;
             // every treasure MUST BE connected to starting position, otherwise throw exception
-            if(mode = SearchType.BFS)
+            if(mode == SearchType.BFS)
             {
                 while (searchMap.nTreasure > 0)
                 {
@@ -161,7 +161,7 @@ namespace TreasureHunt
             if (TSP)
             {
                 searchMap.setTreasure(oldStart);
-                if(mode = SearchType.BFS)
+                if(mode == SearchType.BFS)
                 {
                     List<Node> addPath;
                     int addCount;
@@ -180,13 +180,13 @@ namespace TreasureHunt
 
             }
 
-            return (path, SearchCount);
+            return (path, searchCount);
         }
 
         private (List<Node>, int) BFS(Peta searchMap)
         {
             // initialize starting state
-            PetaVisit isVisited = new PetaVisit(Map.Size);
+            PetaVisit isVisited = new PetaVisit(Map.nRow, Map.nCol);
 
             // initialize search count to -1 (exluding initial element of dummy node)
             int searchCount = -1;
@@ -263,7 +263,7 @@ namespace TreasureHunt
         private (List<Node>, int) DFS(Peta searchMap)
         {
             // initialize starting state
-            PetaVisit isVisited = new PetaVisit(Map.Size);
+            PetaVisit isVisited = new PetaVisit(Map.nRow, Map.nCol);
 
             // initialize search count to -1 (exluding initial element of dummy node)
             int searchCount = -1;

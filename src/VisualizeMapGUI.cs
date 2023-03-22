@@ -26,7 +26,15 @@ namespace src
         {
             this.dataGridView1.RowCount = rows;
             this.dataGridView1.ColumnCount = cols;
-            int height = this.dataGridView1.Columns[0].Width;
+            int height;
+            if (rows == cols)
+            {
+            height = this.dataGridView1.Columns[0].Width;
+            }
+            else
+            {
+                height = this.dataGridView1.Height / rows;
+            }
             
             foreach (DataGridViewRow x in this.dataGridView1.Rows)
             {
@@ -51,7 +59,7 @@ namespace src
                     }
                     else if (Map[i, j] == 'T')
                     {
-                        this.dataGridView1.Rows[i].Cells[j].Value = "💰";
+                        this.dataGridView1.Rows[i].Cells[j].Value = "TREAUSRE";
                     }
                 }
             }
