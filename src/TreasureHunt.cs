@@ -73,7 +73,7 @@ namespace src
         public readonly char choice;
         public readonly Node? parent;
         
-        public Node(Position position, char choice, Node parent = null) {
+        public Node(Position position, char choice, Node? parent = null) {
             this.position = position;
             this.choice = choice;
             this.parent = parent;
@@ -89,6 +89,8 @@ namespace src
             string[,] matrix = ReadMatrixFromFile(filePath);
             Map = new Peta(matrix);
         }
+
+        public char this[int row, int col] => Map[row, col];
 
         private string[,] ReadMatrixFromFile(string filePath) {
             // read all lines from file
@@ -251,7 +253,7 @@ namespace src
 
                 // return list and searchcount
                 List<Node> path = new List<Node>();
-                while (currNode.choice != Directions.STARTDUMMY) {
+                while (currNode.choice != Directions.STARTDUMMY && currNode.parent != null) {
                     path.Add(currNode);
                     currNode = currNode.parent;
                 }
@@ -324,7 +326,7 @@ namespace src
 
                 // return list and searchcount
                 List<Node> path = new List<Node>();
-                while (currNode.choice != Directions.STARTDUMMY) {
+                while (currNode.choice != Directions.STARTDUMMY && currNode.parent != null) {
                     path.Add(currNode);
                     currNode = currNode.parent;
                 }
