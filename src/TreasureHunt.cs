@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO.File;
 using System.Linq;
 using System.Text;
 
@@ -14,6 +15,24 @@ namespace TreasureHunt
             : base("Invalid input symbol at line " + row + ", column " + col)
         {
         }
+
+        public InvalidInputSymbolException(int row)
+            : base("Invalid input symbol at line " + row)
+        {
+        }
+    }
+
+    public class InvalidStartSymbolException : Exception
+    {
+        public InvalidStartSymbolException(int row, int col)
+            : base("Duplicate start symbol exists at line " + row + ", column " + col)
+        {
+        }
+        
+        public InvalidStartSymbolException()
+            : base("No start symbol found!")
+        {
+        }
     }
 
     public class TreasureNotConnectedException : Exception
@@ -26,7 +45,7 @@ namespace TreasureHunt
 
     static class TreasureSymbols
     {
-        public static const HashSet<char> Symbols = {START, TREASURE, PATH, BLOCK};
+        // public static const HashSet<char> Symbols = {START, TREASURE, PATH, BLOCK};
         public static const char START = 'K';
         public static const char TREASURE = 'T';
         public static const char PATH = 'R';
@@ -64,47 +83,36 @@ namespace TreasureHunt
     internal class TreasureHunt
     {
         private readonly Peta Map;
-        private 
 
-        public TreasureHunt()
+        public TreasureHunt(string filePath)
         {
-            Console.WriteLine("CTORRRRR");
-            Map = new char[100,100]; 
-            Map = ReadMatrixFromFile("../src/FILE.txt");
-            list = new List<Node>();
-            row = Map.GetLength(0);
-            col = Map.GetLength(1);
-            for (int i = 0; i < row; i++) {
-                for (int j = 0; j < col; j++) {
-                    if (Map[i,j] == "T") {
-                        countTreasure++;
-                        break;
-                    }
-
-                }
-            }
-        }   
+            string[,] matrix = ReadMatrixFromFile(filePath);
+            Map = new Peta(matrix);
+        }
 
         private string[,] ReadMatrixFromFile(string filePath) {
             // read all lines from file
-            string[] lines = File.ReadAllLines(filePath);
+            string[] lines = System.IO.File.ReadAllLines(filePath);
 
-            // calculate matrix dimensions
+            // get the (supposedly valid) dimension of map matrix
             int rows = lines.Length;
-            int cols = lines[0].Split(' ').Length-1;
-            // Console.WriteLine(cols);
-            // Console.WriteLine(rows);
+            int cols = lines[0].Split(' ').Length;
+            
             // create the matrix
             string[,] matrix = new string[rows, cols];
 
             // populate the matrix with values from the file
             for (int i = 0; i < rows; i++) {
-                string[] rowValues = lines[i].Split(' ');
+                string[] splitLine = lines[i].Split(' ');
                 for (int j = 0; j < cols; j++) {
-                    matrix[i, j] = rowValues[j];
+                    // throw invalid if a line doesn't match the number of char with first line
+                    if(splitLine.Length != cols) throw new InvalidInputSymbolException(i+1);
+
+                    // throw invalid if not spaced correctly
+                    if(splitLine[j].Length != 1) throw new InvalidInputSymbolException(i+1, j+1);
+                    matrix[i, j] = splitLine[j];
                 }
             }
-
             return matrix;
         }
 
@@ -252,7 +260,7 @@ namespace TreasureHunt
             }
         }
 
-        private void DFS()
+        private (List<Node>, int) DFS(Peta searchMap)
         {
             // initialize starting state
             PetaVisit isVisited = new PetaVisit(Map.Size);
