@@ -43,11 +43,15 @@ namespace src
                 {
                     if (Map[i, j] == 'X')
                     {
-                        this.dataGridView1.Rows[i].Cells[j].Style.BackColor = Color.Black;
+                        this.dataGridView1.Rows[i].Cells[j].Style.BackColor = Color.Gray;
                     }
                     else if (Map[i, j] == 'K')
                     {
                         this.dataGridView1.Rows[i].Cells[j].Value = "START";
+                    }
+                    else if (Map[i, j] == 'T')
+                    {
+                        this.dataGridView1.Rows[i].Cells[j].Value = "💰";
                     }
                 }
             }
@@ -58,6 +62,33 @@ namespace src
             
         }
 
+        public async Task show_progress(int[,] PointSequence, int pauseTime)
+        {
+            for (int i = 0; i < PointSequence.GetLength(0); i++)
+            {
+                if (i != 0)
+                {
+                    // Mark nodes already checked
+                    int prevRow = PointSequence[i - 1, 0];
+                    int prevCol = PointSequence[i - 1, 1];
+                    this.dataGridView1.Rows[prevRow].Cells[prevCol].Style.BackColor = Color.Blue;
+                }
+
+                // Mark nodes being checked
+                int row = PointSequence[i, 0];
+                int col = PointSequence[i, 1];
+                this.dataGridView1.Rows[row].Cells[col].Style.BackColor = Color.Red;
+                await Task.Delay(pauseTime);
+            }
+
+            // Mark last node as checked
+            int lastRow = PointSequence[PointSequence.GetLength(0) - 1, 0];
+            int lastCol = PointSequence[PointSequence.GetLength(0) - 1, 1];
+            this.dataGridView1.Rows[lastRow].Cells[lastCol].Style.BackColor = Color.Blue;
+        }
+
+       
+
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
@@ -66,6 +97,22 @@ namespace src
         private void dataGridView1_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
         {
 
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_search_Click(object sender, EventArgs e)
+        {
+            int[,] PointSequence = { { 0, 0 }, { 0, 1 }, { 0, 2 }, { 1, 0 }, { 0, 3 }, { 2, 1 } };
+            show_progress(PointSequence, 1000);
         }
     }
 }

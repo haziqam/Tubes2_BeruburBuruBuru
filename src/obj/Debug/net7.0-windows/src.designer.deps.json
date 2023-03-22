@@ -6,23 +6,23 @@
   "compilationOptions": {},
   "targets": {
     ".NETCoreApp,Version=v7.0": {
-      "FeatureToggle.Core/3.5.1": {
+      "MetroSet_UI/2.0.0": {
         "runtime": {
-          "lib/portable-net40+sl50+wp81+wpa+win/FeatureToggle.Core.dll": {
-            "assemblyVersion": "3.3.0.0",
-            "fileVersion": "3.3.0.0"
+          "lib/netcoreapp3.1/MetroSet UI.dll": {
+            "assemblyVersion": "2.0.0.0",
+            "fileVersion": "2.0.0.0"
           }
         }
       }
     }
   },
   "libraries": {
-    "FeatureToggle.Core/3.5.1": {
+    "MetroSet_UI/2.0.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-Kol2QTZa6BArJSTqp0Dr23bic0oAuk7IShjBpQFjec6/w0799ygcOT58KupKdnWhYY1aB93HhUkzZFv3LlqcVA==",
-      "path": "featuretoggle.core/3.5.1",
-      "hashPath": "featuretoggle.core.3.5.1.nupkg.sha512"
+      "sha512": "sha512-7FO1rFTiht/j+xdvyRBQOv3JL8yoKBwQrrBuA/Zbz98sNIhgpNDO977ZumAz6TTfbuIT/4waSHsFBp01cXDDIA==",
+      "path": "metroset_ui/2.0.0",
+      "hashPath": "metroset_ui.2.0.0.nupkg.sha512"
     }
   }
 }
