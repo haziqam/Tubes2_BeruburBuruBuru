@@ -27,14 +27,15 @@ panel:
 
 namespace src
 {
-    public partial class GUI : Form
+    public partial class FileInputGUI : Form
     {
         private bool useDefaultPath; // default path: test folder
         private bool useBFS;
         private bool useDFS;
-        private bool showSteps;
+        private bool showSteps = false;
+        private bool includeTSP = false;
 
-        public GUI()
+        public FileInputGUI()
         {
             InitializeComponent();
         }
@@ -130,9 +131,22 @@ namespace src
 
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
+        private void swtch_TSP_SwitchedChanged(object sender)
         {
+            this.includeTSP = !this.includeTSP;
+        }
 
+        private void swtch_showSteps_SwitchedChanged(object sender)
+        {
+            this.showSteps = !this.showSteps;
+            if (this.showSteps)
+            {
+                this.cbo_ms.Show();
+            }
+            else
+            {
+                this.cbo_ms.Hide();
+            }
         }
     }
 }

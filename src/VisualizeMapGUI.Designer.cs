@@ -35,7 +35,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btn_search = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -70,7 +70,7 @@
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.label1);
-            this.panel1.Controls.Add(this.button1);
+            this.panel1.Controls.Add(this.btn_search);
             this.panel1.Location = new System.Drawing.Point(58, 124);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(403, 519);
@@ -133,14 +133,15 @@
             this.label1.TabIndex = 1;
             this.label1.Text = "Algorithm: ";
             // 
-            // button1
+            // btn_search
             // 
-            this.button1.Location = new System.Drawing.Point(81, 438);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(219, 57);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btn_search.Location = new System.Drawing.Point(81, 438);
+            this.btn_search.Name = "btn_search";
+            this.btn_search.Size = new System.Drawing.Size(219, 57);
+            this.btn_search.TabIndex = 0;
+            this.btn_search.Text = "SEARCH!";
+            this.btn_search.UseVisualStyleBackColor = true;
+            this.btn_search.Click += new System.EventHandler(this.btn_search_Click);
             // 
             // VisualizeMapGUI
             // 
@@ -166,7 +167,7 @@
         private Panel panel1;
         private Label label2;
         private Label label1;
-        private Button button1;
+        private Button btn_search;
         private Label label3;
         private Label label5;
         private Label label4;

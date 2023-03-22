@@ -4,7 +4,6 @@ D:\University\Tubes2_BeruburBuruBuru\src\bin\Debug\net7.0-windows\src.runtimecon
 D:\University\Tubes2_BeruburBuruBuru\src\bin\Debug\net7.0-windows\src.dll
 D:\University\Tubes2_BeruburBuruBuru\src\bin\Debug\net7.0-windows\src.pdb
 D:\University\Tubes2_BeruburBuruBuru\src\obj\Debug\net7.0-windows\src.csproj.AssemblyReference.cache
-D:\University\Tubes2_BeruburBuruBuru\src\obj\Debug\net7.0-windows\src.GUI.resources
 D:\University\Tubes2_BeruburBuruBuru\src\obj\Debug\net7.0-windows\src.csproj.GenerateResource.cache
 D:\University\Tubes2_BeruburBuruBuru\src\obj\Debug\net7.0-windows\src.GeneratedMSBuildEditorConfig.editorconfig
 D:\University\Tubes2_BeruburBuruBuru\src\obj\Debug\net7.0-windows\src.AssemblyInfoInputs.cache
@@ -19,3 +18,4 @@ D:\University\Tubes2_BeruburBuruBuru\src\obj\Debug\net7.0-windows\src.VisualizeM
 D:\University\Tubes2_BeruburBuruBuru\src\obj\Debug\net7.0-windows\src.Properties.Resources.resources
 D:\University\Tubes2_BeruburBuruBuru\src\obj\Debug\net7.0-windows\src.csproj.CopyComplete
 D:\University\Tubes2_BeruburBuruBuru\src\bin\Debug\net7.0-windows\MetroSet UI.dll
+D:\University\Tubes2_BeruburBuruBuru\src\obj\Debug\net7.0-windows\src.FileInputGUI.resources

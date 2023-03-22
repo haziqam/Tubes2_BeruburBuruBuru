@@ -2,7 +2,7 @@
 
 namespace src
 {
-    partial class GUI
+    partial class FileInputGUI
     {
         /// <summary>
         /// Required designer variable.
@@ -30,6 +30,7 @@ namespace src
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FileInputGUI));
             this.lbl_filename = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.rdo_BFS = new System.Windows.Forms.RadioButton();
@@ -37,16 +38,20 @@ namespace src
             this.btn_visualize = new System.Windows.Forms.Button();
             this.ofd_browseFile = new System.Windows.Forms.OpenFileDialog();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.swtch_TSP = new MetroSet_UI.Controls.MetroSetSwitch();
             this.rdo_DFS = new System.Windows.Forms.RadioButton();
             this.lbl_TSP = new System.Windows.Forms.Label();
-            this.metroSetSwitch1 = new MetroSet_UI.Controls.MetroSetSwitch();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.cbo_ms = new System.Windows.Forms.ComboBox();
+            this.swtch_showSteps = new MetroSet_UI.Controls.MetroSetSwitch();
             this.lbl_showSteps = new System.Windows.Forms.Label();
-            this.metroSetSwitch2 = new MetroSet_UI.Controls.MetroSetSwitch();
             this.txt_filename = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
             // 
             // lbl_filename
@@ -54,7 +59,7 @@ namespace src
             this.lbl_filename.AutoSize = true;
             this.lbl_filename.Font = new System.Drawing.Font("DM Sans", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.lbl_filename.ForeColor = System.Drawing.SystemColors.Window;
-            this.lbl_filename.Location = new System.Drawing.Point(36, 89);
+            this.lbl_filename.Location = new System.Drawing.Point(101, 97);
             this.lbl_filename.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
             this.lbl_filename.Name = "lbl_filename";
             this.lbl_filename.Size = new System.Drawing.Size(203, 37);
@@ -67,7 +72,7 @@ namespace src
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label3.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.label3.Location = new System.Drawing.Point(34, 288);
+            this.label3.Location = new System.Drawing.Point(104, 301);
             this.label3.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(271, 38);
@@ -122,15 +127,40 @@ namespace src
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(55)))), ((int)(((byte)(66)))));
+            this.panel1.Controls.Add(this.swtch_TSP);
             this.panel1.Controls.Add(this.rdo_DFS);
             this.panel1.Controls.Add(this.lbl_TSP);
-            this.panel1.Controls.Add(this.metroSetSwitch1);
             this.panel1.Controls.Add(this.rdo_BFS);
-            this.panel1.Location = new System.Drawing.Point(48, 354);
+            this.panel1.Location = new System.Drawing.Point(46, 354);
             this.panel1.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(191, 227);
+            this.panel1.Size = new System.Drawing.Size(200, 227);
             this.panel1.TabIndex = 12;
+            // 
+            // swtch_TSP
+            // 
+            this.swtch_TSP.BackColor = System.Drawing.Color.Transparent;
+            this.swtch_TSP.BackgroundColor = System.Drawing.Color.Empty;
+            this.swtch_TSP.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(165)))), ((int)(((byte)(159)))), ((int)(((byte)(147)))));
+            this.swtch_TSP.CheckColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(177)))), ((int)(((byte)(225)))));
+            this.swtch_TSP.CheckState = MetroSet_UI.Enums.CheckState.Unchecked;
+            this.swtch_TSP.DisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(205)))), ((int)(((byte)(205)))), ((int)(((byte)(205)))));
+            this.swtch_TSP.DisabledCheckColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(65)))), ((int)(((byte)(177)))), ((int)(((byte)(225)))));
+            this.swtch_TSP.DisabledUnCheckColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(205)))), ((int)(((byte)(205)))), ((int)(((byte)(205)))));
+            this.swtch_TSP.IsDerivedStyle = true;
+            this.swtch_TSP.Location = new System.Drawing.Point(22, 176);
+            this.swtch_TSP.Name = "swtch_TSP";
+            this.swtch_TSP.Size = new System.Drawing.Size(58, 22);
+            this.swtch_TSP.Style = MetroSet_UI.Enums.Style.Light;
+            this.swtch_TSP.StyleManager = null;
+            this.swtch_TSP.Switched = false;
+            this.swtch_TSP.SymbolColor = System.Drawing.Color.FromArgb(((int)(((byte)(92)))), ((int)(((byte)(92)))), ((int)(((byte)(92)))));
+            this.swtch_TSP.TabIndex = 11;
+            this.swtch_TSP.Text = "metroSetSwitch1";
+            this.swtch_TSP.ThemeAuthor = "Narwin";
+            this.swtch_TSP.ThemeName = "MetroLite";
+            this.swtch_TSP.UnCheckColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(155)))), ((int)(((byte)(155)))));
+            this.swtch_TSP.SwitchedChanged += new MetroSet_UI.Controls.MetroSetSwitch.SwitchedChangedEventHandler(this.swtch_TSP_SwitchedChanged);
             // 
             // rdo_DFS
             // 
@@ -151,115 +181,115 @@ namespace src
             this.lbl_TSP.AutoSize = true;
             this.lbl_TSP.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.lbl_TSP.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.lbl_TSP.Location = new System.Drawing.Point(104, 167);
+            this.lbl_TSP.Location = new System.Drawing.Point(101, 170);
             this.lbl_TSP.Name = "lbl_TSP";
             this.lbl_TSP.Size = new System.Drawing.Size(53, 32);
             this.lbl_TSP.TabIndex = 10;
             this.lbl_TSP.Text = "TSP";
             // 
-            // metroSetSwitch1
-            // 
-            this.metroSetSwitch1.BackColor = System.Drawing.Color.Transparent;
-            this.metroSetSwitch1.BackgroundColor = System.Drawing.Color.Empty;
-            this.metroSetSwitch1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(165)))), ((int)(((byte)(159)))), ((int)(((byte)(147)))));
-            this.metroSetSwitch1.CheckColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(177)))), ((int)(((byte)(225)))));
-            this.metroSetSwitch1.CheckState = MetroSet_UI.Enums.CheckState.Unchecked;
-            this.metroSetSwitch1.DisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(205)))), ((int)(((byte)(205)))), ((int)(((byte)(205)))));
-            this.metroSetSwitch1.DisabledCheckColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(65)))), ((int)(((byte)(177)))), ((int)(((byte)(225)))));
-            this.metroSetSwitch1.DisabledUnCheckColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(205)))), ((int)(((byte)(205)))), ((int)(((byte)(205)))));
-            this.metroSetSwitch1.IsDerivedStyle = true;
-            this.metroSetSwitch1.Location = new System.Drawing.Point(20, 177);
-            this.metroSetSwitch1.Margin = new System.Windows.Forms.Padding(2);
-            this.metroSetSwitch1.Name = "metroSetSwitch1";
-            this.metroSetSwitch1.Size = new System.Drawing.Size(58, 22);
-            this.metroSetSwitch1.Style = MetroSet_UI.Enums.Style.Light;
-            this.metroSetSwitch1.StyleManager = null;
-            this.metroSetSwitch1.Switched = false;
-            this.metroSetSwitch1.SymbolColor = System.Drawing.Color.FromArgb(((int)(((byte)(92)))), ((int)(((byte)(92)))), ((int)(((byte)(92)))));
-            this.metroSetSwitch1.TabIndex = 8;
-            this.metroSetSwitch1.Text = "metroSetSwitch1";
-            this.metroSetSwitch1.ThemeAuthor = "Narwin";
-            this.metroSetSwitch1.ThemeName = "MetroLite";
-            this.metroSetSwitch1.UnCheckColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(155)))), ((int)(((byte)(155)))));
-            // 
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(55)))), ((int)(((byte)(66)))));
-            this.panel2.Controls.Add(this.textBox1);
+            this.panel2.Controls.Add(this.cbo_ms);
+            this.panel2.Controls.Add(this.swtch_showSteps);
             this.panel2.Controls.Add(this.lbl_showSteps);
-            this.panel2.Controls.Add(this.metroSetSwitch2);
             this.panel2.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.panel2.Location = new System.Drawing.Point(301, 354);
+            this.panel2.Location = new System.Drawing.Point(295, 354);
             this.panel2.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(191, 227);
+            this.panel2.Size = new System.Drawing.Size(200, 227);
             this.panel2.TabIndex = 13;
+            // 
+            // cbo_ms
+            // 
+            this.cbo_ms.BackColor = System.Drawing.Color.Silver;
+            this.cbo_ms.FormattingEnabled = true;
+            this.cbo_ms.Items.AddRange(new object[] {
+            "250",
+            "500",
+            "1000",
+            "2000"});
+            this.cbo_ms.Location = new System.Drawing.Point(19, 170);
+            this.cbo_ms.Name = "cbo_ms";
+            this.cbo_ms.Size = new System.Drawing.Size(119, 33);
+            this.cbo_ms.TabIndex = 16;
+            // 
+            // swtch_showSteps
+            // 
+            this.swtch_showSteps.BackColor = System.Drawing.Color.Transparent;
+            this.swtch_showSteps.BackgroundColor = System.Drawing.Color.Empty;
+            this.swtch_showSteps.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(165)))), ((int)(((byte)(159)))), ((int)(((byte)(147)))));
+            this.swtch_showSteps.CheckColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(177)))), ((int)(((byte)(225)))));
+            this.swtch_showSteps.CheckState = MetroSet_UI.Enums.CheckState.Unchecked;
+            this.swtch_showSteps.DisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(205)))), ((int)(((byte)(205)))), ((int)(((byte)(205)))));
+            this.swtch_showSteps.DisabledCheckColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(65)))), ((int)(((byte)(177)))), ((int)(((byte)(225)))));
+            this.swtch_showSteps.DisabledUnCheckColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(205)))), ((int)(((byte)(205)))), ((int)(((byte)(205)))));
+            this.swtch_showSteps.IsDerivedStyle = true;
+            this.swtch_showSteps.Location = new System.Drawing.Point(22, 111);
+            this.swtch_showSteps.Name = "swtch_showSteps";
+            this.swtch_showSteps.Size = new System.Drawing.Size(58, 22);
+            this.swtch_showSteps.Style = MetroSet_UI.Enums.Style.Light;
+            this.swtch_showSteps.StyleManager = null;
+            this.swtch_showSteps.Switched = false;
+            this.swtch_showSteps.SymbolColor = System.Drawing.Color.FromArgb(((int)(((byte)(92)))), ((int)(((byte)(92)))), ((int)(((byte)(92)))));
+            this.swtch_showSteps.TabIndex = 12;
+            this.swtch_showSteps.Text = "metroSetSwitch1";
+            this.swtch_showSteps.ThemeAuthor = "Narwin";
+            this.swtch_showSteps.ThemeName = "MetroLite";
+            this.swtch_showSteps.UnCheckColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(155)))), ((int)(((byte)(155)))));
+            this.swtch_showSteps.SwitchedChanged += new MetroSet_UI.Controls.MetroSetSwitch.SwitchedChangedEventHandler(this.swtch_showSteps_SwitchedChanged);
             // 
             // lbl_showSteps
             // 
             this.lbl_showSteps.AutoSize = true;
             this.lbl_showSteps.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.lbl_showSteps.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.lbl_showSteps.Location = new System.Drawing.Point(16, 66);
+            this.lbl_showSteps.Location = new System.Drawing.Point(16, 63);
             this.lbl_showSteps.Name = "lbl_showSteps";
             this.lbl_showSteps.Size = new System.Drawing.Size(134, 32);
             this.lbl_showSteps.TabIndex = 11;
             this.lbl_showSteps.Text = "Show steps";
             this.lbl_showSteps.Click += new System.EventHandler(this.lbl_showSteps_Click);
             // 
-            // metroSetSwitch2
-            // 
-            this.metroSetSwitch2.BackColor = System.Drawing.Color.Transparent;
-            this.metroSetSwitch2.BackgroundColor = System.Drawing.Color.Empty;
-            this.metroSetSwitch2.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(165)))), ((int)(((byte)(159)))), ((int)(((byte)(147)))));
-            this.metroSetSwitch2.CheckColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(177)))), ((int)(((byte)(225)))));
-            this.metroSetSwitch2.CheckState = MetroSet_UI.Enums.CheckState.Unchecked;
-            this.metroSetSwitch2.DisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(205)))), ((int)(((byte)(205)))), ((int)(((byte)(205)))));
-            this.metroSetSwitch2.DisabledCheckColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(65)))), ((int)(((byte)(177)))), ((int)(((byte)(225)))));
-            this.metroSetSwitch2.DisabledUnCheckColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(205)))), ((int)(((byte)(205)))), ((int)(((byte)(205)))));
-            this.metroSetSwitch2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.metroSetSwitch2.IsDerivedStyle = true;
-            this.metroSetSwitch2.Location = new System.Drawing.Point(21, 118);
-            this.metroSetSwitch2.Margin = new System.Windows.Forms.Padding(2);
-            this.metroSetSwitch2.Name = "metroSetSwitch2";
-            this.metroSetSwitch2.Size = new System.Drawing.Size(58, 22);
-            this.metroSetSwitch2.Style = MetroSet_UI.Enums.Style.Light;
-            this.metroSetSwitch2.StyleManager = null;
-            this.metroSetSwitch2.Switched = false;
-            this.metroSetSwitch2.SymbolColor = System.Drawing.Color.FromArgb(((int)(((byte)(92)))), ((int)(((byte)(92)))), ((int)(((byte)(92)))));
-            this.metroSetSwitch2.TabIndex = 9;
-            this.metroSetSwitch2.Text = "metroSetSwitch2";
-            this.metroSetSwitch2.ThemeAuthor = "Narwin";
-            this.metroSetSwitch2.ThemeName = "MetroLite";
-            this.metroSetSwitch2.UnCheckColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(155)))), ((int)(((byte)(155)))));
-            // 
             // txt_filename
             // 
             this.txt_filename.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(55)))), ((int)(((byte)(66)))));
+            this.txt_filename.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txt_filename.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.txt_filename.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.txt_filename.Location = new System.Drawing.Point(36, 150);
             this.txt_filename.Name = "txt_filename";
-            this.txt_filename.Size = new System.Drawing.Size(456, 45);
+            this.txt_filename.Size = new System.Drawing.Size(456, 38);
             this.txt_filename.TabIndex = 15;
             // 
-            // textBox1
+            // pictureBox1
             // 
-            this.textBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(55)))), ((int)(((byte)(66)))));
-            this.textBox1.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.textBox1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.textBox1.Location = new System.Drawing.Point(21, 167);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(86, 34);
-            this.textBox1.TabIndex = 16;
-            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(55, 302);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(40, 40);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 16;
+            this.pictureBox1.TabStop = false;
             // 
-            // GUI
+            // pictureBox2
+            // 
+            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
+            this.pictureBox2.Location = new System.Drawing.Point(46, 95);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(40, 40);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox2.TabIndex = 17;
+            this.pictureBox2.TabStop = false;
+            // 
+            // FileInputGUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(36)))), ((int)(((byte)(41)))));
             this.ClientSize = new System.Drawing.Size(528, 694);
+            this.Controls.Add(this.pictureBox2);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.txt_filename);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
@@ -268,13 +298,15 @@ namespace src
             this.Controls.Add(this.label3);
             this.Controls.Add(this.lbl_filename);
             this.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            this.Name = "GUI";
+            this.Name = "FileInputGUI";
             this.Text = "Treasure Hunt";
             this.Load += new System.EventHandler(this.GUI_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -290,12 +322,14 @@ namespace src
         private OpenFileDialog ofd_browseFile;
         private Panel panel1;
         private Panel panel2;
-        private MetroSet_UI.Controls.MetroSetSwitch metroSetSwitch1;
-        private MetroSet_UI.Controls.MetroSetSwitch metroSetSwitch2;
         private RadioButton rdo_DFS;
         private TextBox txt_filename;
         private Label lbl_TSP;
         private Label lbl_showSteps;
-        private TextBox textBox1;
+        private MetroSet_UI.Controls.MetroSetSwitch swtch_TSP;
+        private MetroSet_UI.Controls.MetroSetSwitch swtch_showSteps;
+        private ComboBox cbo_ms;
+        private PictureBox pictureBox1;
+        private PictureBox pictureBox2;
     }
 }
