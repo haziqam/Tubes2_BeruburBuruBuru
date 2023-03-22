@@ -138,7 +138,7 @@ namespace TreasureHunt
                     searchCount += addCount;
                 }
             }
-            else
+            else    // type is DFS
             {
                 while (searchMap.nTreasure > 0)
                 {
@@ -150,7 +150,27 @@ namespace TreasureHunt
                 } 
             }
 
-            // TSP code
+            if (TSP)
+            {
+                searchMap.setTreasure(oldStart);
+                if(mode = SearchType.BFS)
+                {
+                    List<Node> addPath;
+                    int addCount;
+                    (addPath, addCount) = BFS(searchMap);
+                    path.AddRange(addPath);
+                    searchCount += addCount;
+                }
+                else    // type is DFS
+                {
+                    List<Node> addPath;
+                    int addCount;
+                    (addPath, addCount) = DFS(searchMap);
+                    path.AddRange(addPath);
+                    searchCount += addCount;
+                }
+
+            }
 
             return (path, SearchCount);
         }
