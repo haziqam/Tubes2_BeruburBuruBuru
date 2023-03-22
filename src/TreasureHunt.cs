@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO.File;
+// using System.IO.File;
 using System.Linq;
 using System.Text;
 
@@ -219,22 +219,22 @@ namespace src
                 if (searchMap.isUpValid(currPos))
                 {
                     // check if grid has not been traversed before during this search
-                    if (!isVisited[currPos.coord]) memo.Enqueue(new Node(currPos.up(), Directions.UP, currNode));
+                    if (!isVisited[currPos.row,currPos.col]) memo.Enqueue(new Node(currPos.up(), Directions.UP, currNode));
                 }
                 // check if going right is valid
                 if (searchMap.isRightValid(currPos))
                 {
-                    if (!isVisited[currPos.coord]) memo.Enqueue(new Node(currPos.right(), Directions.RIGHT, currNode));
+                    if (!isVisited[currPos.row,currPos.col]) memo.Enqueue(new Node(currPos.right(), Directions.RIGHT, currNode));
                 }
                 // check if going down is valid
                 if (searchMap.isDownValid(currPos))
                 {
-                    if (!isVisited[currPos.coord]) memo.Enqueue(new Node(currPos.down(), Directions.DOWN, currNode));
+                    if (!isVisited[currPos.row,currPos.col]) memo.Enqueue(new Node(currPos.down(), Directions.DOWN, currNode));
                 }
                 // check if going left is valid
                 if (searchMap.isLeftValid(currPos))
                 {
-                    if (!isVisited[currPos.coord]) memo.Enqueue(new Node(currPos.left(), Directions.LEFT, currNode));
+                    if (!isVisited[currPos.row,currPos.col]) memo.Enqueue(new Node(currPos.left(), Directions.LEFT, currNode));
                 }
 
             } while(!searchMap.isTreasure(currPos) && (memo.Count != 0));
@@ -287,22 +287,22 @@ namespace src
                 if (searchMap.isUpValid(currPos))
                 {
                     // check if grid has not been traversed before during this search
-                    if (!isVisited[currPos.coord]) memo.Push(new Node(currPos.up(), Directions.UP, currNode));
+                    if (!isVisited[currPos.row,currPos.col]) memo.Push(new Node(currPos.up(), Directions.UP, currNode));
                 }
                 // check if going right is valid
                 if (searchMap.isRightValid(currPos))
                 {
-                    if (!isVisited[currPos.coord]) memo.Push(new Node(currPos.right(), Directions.RIGHT, currNode));
+                    if (!isVisited[currPos.row,currPos.col]) memo.Push(new Node(currPos.right(), Directions.RIGHT, currNode));
                 }
                 // check if going down is valid
                 if (searchMap.isDownValid(currPos))
                 {
-                    if (!isVisited[currPos.coord]) memo.Push(new Node(currPos.down(), Directions.DOWN, currNode));
+                    if (!isVisited[currPos.row,currPos.col]) memo.Push(new Node(currPos.down(), Directions.DOWN, currNode));
                 }
                 // check if going left is valid
                 if (searchMap.isLeftValid(currPos))
                 {
-                    if (!isVisited[currPos.coord]) memo.Push(new Node(currPos.left(), Directions.LEFT, currNode));
+                    if (!isVisited[currPos.row,currPos.col]) memo.Push(new Node(currPos.left(), Directions.LEFT, currNode));
                 }
 
             } while(!searchMap.isTreasure(currPos) && (memo.Count != 0));
