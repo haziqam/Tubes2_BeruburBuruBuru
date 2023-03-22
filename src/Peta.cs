@@ -3,13 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace src {
+namespace TreasureHunt
+{
     class Peta
     {
         private char[,] peta;
-        public Position startPos { get; }
         private readonly int nRow;
         private readonly int nCol;
+        public int nTreasure { get; }
+        public Position startPos { get; }
 
         public Peta(List<List<char>> petaList)
         {
@@ -36,18 +38,18 @@ namespace src {
             {
                 for (int j = 0; j < nCol; j++)
                 {
-                    peta[i,j] = other[i,j];
+                    peta[i,j] = other.peta[i,j];
                 }
             }
         }
 
         /* Selector */
-        // public char this[int row, int col] => map[row, col];
-        public char this[int row, int col]
-        {
-            get => map[row, col];
-            set => map[row, col] = value;
-        }
+        public char this[int row, int col] => map[row, col];
+        // public char this[int row, int col]
+        // {
+        //     get => map[row, col];
+        //     set => map[row, col] = value;
+        // }
 
         public (int, int) Size
         {
@@ -55,58 +57,77 @@ namespace src {
         }
 
         /* Position checking */
-        public isPosInBound(Position x)
+        public bool isPosInBound(Position x)
         {
             return (0 <= x.row && x.row < nRow) && (0 <= x.col && x.col < nCol);
         }
 
-        public isUpValid(Position x)
+        public bool isUpValid(Position x)
         {
             if (0 <= x.row-1)
             {
-                return peta[x.row, x.col] != TH.BLOCK;
+                return peta[x.row, x.col] != TreasureSymbols.BLOCK;
             }
             return false;
 
         }
 
-        public isRightValid(Position x)
+        public bool isRightValid(Position x)
         {
             if (x.col+1 < nCol)
             {
-                return peta[x.row, x.col] != TH.BLOCK;
+                return peta[x.row, x.col] != TreasureSymbols.BLOCK;
             }
             return false;
         }
 
-        public isDownValid(Position x)
+        public bool isDownValid(Position x)
         {
             if (x.row+1 < nRow)
             {
-                return peta[x.row, x.col] != TH.BLOCK;
+                return peta[x.row, x.col] != TreasureSymbols.BLOCK;
             }
             return false;
         }
 
-        public isLeftValid(Position x)
+        public bool isLeftValid(Position x)
         {
             if (0 <= x.col-1)
             {
-                return peta[x.row, x.col] != TH.BLOCK;
+                return peta[x.row, x.col] != TreasureSymbols.BLOCK;
             }
             return false;
         }
 
         public bool isTreasure(Position x)
         {
-            return peta[x.row, x.col] == TH.TREASURE;
+            return peta[x.row, x.col] == TreasureSymbols.TREASURE;
+        }
+
+        public void eraseTreasure(Position x)
+        {
+            if (peta[startPos.row, startPos.col] == TreasureSymbols.TREASURE)
+            {
+                nTreasure--;
+                peta[startPos.row, startPos.col] = TreasureSymbols.PATH;
+            }
         }
 
         public void setStart(Position x)
         {
-            peta[startPos.row, startPos.col] = TH.PATH;
+            // set old starting point to regular path
+            peta[startPos.row, startPos.col] = TreasureSymbols.PATH;
+
+            // make new starting point the map's starting point
             startPos = new Position(x);
-            peta[startPos.row, startPos.col] = TH.START;
+
+            // if replaced point is a treasure, reduce treasure
+            if (peta[startPos.row, startPos.col] == TreasureSymbols.TREASURE)
+            {
+                nTreasure--;
+            }
+
+            peta[startPos.row, startPos.col] = TreasureSymbols.START;
         }
 
         public void setTreasure(Position x)
@@ -117,7 +138,7 @@ namespace src {
             }
             else
             {
-                peta[x.row, x.col] = TH.TREASURE;
+                peta[x.row, x.col] = TreasureSymbols.TREASURE;
             }
         }
     }
@@ -180,9 +201,14 @@ namespace src {
             col = other.col;
         }
 
+        public (int, int) coord
+        {
+            get { return (this.row, this.col); }
+        }
+
         public bool isEqual(Position other)
         {
-            return (this.row == other.row) && (this.col == other,col);
+            return (this.row == other.row) && (this.col == other.col);
         }
 
         public Position up()
