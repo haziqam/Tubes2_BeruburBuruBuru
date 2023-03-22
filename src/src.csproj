@@ -9,7 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="FeatureToggle.Core" Version="3.5.1" />
+    <PackageReference Include="MetroSet_UI" Version="2.0.0" />
   </ItemGroup>
 
   <ItemGroup>

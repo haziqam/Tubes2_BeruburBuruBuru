@@ -4,6 +4,9 @@
     <Compile Update="FileInputGUI.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="RoundedButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Update="VisualizeMapGUI.cs">
       <SubType>Form</SubType>
     </Compile>
