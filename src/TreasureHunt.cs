@@ -234,6 +234,70 @@ namespace TreasureHunt
 
         private void DFS()
         {
+            // initialize starting state
+            PetaVisit isVisited = new PetaVisit(Map.Size);
+
+            // initialize search count to -1 (exluding initial element of dummy node)
+            int searchCount = -1;
+            // initialize DFS Stack
+            Stack<Node> memo = new Stack<Node>();
+
+            // push dummy initial search (starting position)
+            memo.Push(new Node(searchMap.startPos, Directions.STARTDUMMY));
+            Node currNode;
+            Position currPos;
+            do
+            {
+                searchCount++;
+                currNode = memo.Pop();
+                currPos = currNode.position;
+
+                isVisited.visit(currPos);
+
+                // checking priority: up, right, down, left (clockwise direction)
+                // check if going up is valid
+                if (searchMap.isUpValid(currPos))
+                {
+                    // check if grid has not been traversed before during this search
+                    if (!isVisited[currPos.coord]) memo.Push(new Node(currPos.up(), Directions.UP, currNode));
+                }
+                // check if going right is valid
+                if (searchMap.isRightValid(currPos))
+                {
+                    if (!isVisited[currPos.coord]) memo.Push(new Node(currPos.right(), Directions.RIGHT, currNode));
+                }
+                // check if going down is valid
+                if (searchMap.isDownValid(currPos))
+                {
+                    if (!isVisited[currPos.coord]) memo.Push(new Node(currPos.down(), Directions.DOWN, currNode));
+                }
+                // check if going left is valid
+                if (searchMap.isLeftValid(currPos))
+                {
+                    if (!isVisited[currPos.coord]) memo.Push(new Node(currPos.left(), Directions.LEFT, currNode));
+                }
+
+            } while(!searchMap.isTreasure(currPos) && (memo.Count != 0));
+
+            if (searchMap.isTreasure(currPos))
+            {
+                // set current position as new starting point for next BFS
+                searchMap.setStart(currPos);
+
+                // return list and searchcount
+                List<Node> path = new List<Node>();
+                while (currNode.choice != Directions.STARTDUMMY) {
+                    path.Add(currNode);
+                    currNode = currNode.parent;
+                }
+                path.Reverse();
+
+                return (path, searchCount);
+            }
+            else
+            {
+                throw new TreasureNotConnectedException();
+            }
         }
     }
 }
