@@ -59,6 +59,8 @@ namespace src
         {
             nRow = other.nRow;
             nCol = other.nCol;
+            nTreasure = other.nTreasure;
+            startPos = other.startPos;
 
             peta = new char[nRow, nCol];
             for (int i = 0; i < nRow; i++)
