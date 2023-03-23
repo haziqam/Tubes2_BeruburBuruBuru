@@ -14,12 +14,14 @@ namespace src
 {
     partial class VisualizeMapGUI : Form
     {
-        // Reference to file input window, supaya bisa dapetin data dari file input GUI dan 
-        // Show file input window setelah klik tombol back
+        // Reference to file input window => to fetch data from fileInputGUI and
+        // to enable going back to fileInputGUI after clicking back button
         private FileInputGUI fileInputGUI;
 
-        // Reference to treasureHunt, supaya bisa dapetin data peta dan method2 yang diperlukan
+        // Reference to treasureHunt => to fetch map data and methods
         private TreasureHunt treasureHunt;
+
+        private bool hasClickedStartButton = false;
 
         public VisualizeMapGUI(FileInputGUI fileInputGUI , TreasureHunt treasureHunt)
         {
@@ -48,18 +50,14 @@ namespace src
             // Initialize grid view
             initialize_dataGridView(this.treasureHunt.Row, this.treasureHunt.Col);
             
-            // Fill map
+            // Fill map color
             fill_map();
-
         }
 
-        private void VisualizeMapGUI_Load(object sender, EventArgs e)
+        private void initialize_dataGridView(int rows, int cols)
         {
+            // To set size and amount of rows and cells in the datagridview 
 
-        }
-
-        public void initialize_dataGridView(int rows, int cols)
-        {
             this.dataGridView1.RowCount = rows;
             this.dataGridView1.ColumnCount = cols;
             int height;
@@ -81,13 +79,18 @@ namespace src
             this.dataGridView1.CurrentCell = null;
         }
 
-
-        //TO-DO: ganti parameter char[,] ke Peta
-        public void fill_map()
+        private void fill_map()
         {
             // Change font, font size, and text alignment
             dataGridView1.DefaultCellStyle.Font = new Font("Open Sans", 12, FontStyle.Bold);
             dataGridView1.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+            /* Color assignment
+            Default (any nodes that can be visited) => white
+            Block (nodes that can't be visited) => gray  */
+
+            Color blockColor = Color.Gray;
+            Color defaultColor = Color.White;
 
             // Fill each cells of datagrid
             for (int i = 0; i < this.dataGridView1.RowCount; i++)
@@ -96,31 +99,54 @@ namespace src
                 {
                     if (this.treasureHunt[i, j] == TreasureSymbols.BLOCK)
                     {
-                        this.dataGridView1.Rows[i].Cells[j].Style.BackColor = Color.Gray;
+                        this.dataGridView1.Rows[i].Cells[j].Style.BackColor = blockColor;
                     }
-                    else if (this.treasureHunt[i, j] == TreasureSymbols.START)
+                    else
                     {
-                        this.dataGridView1.Rows[i].Cells[j].Value = "🚩";
-                    }
-                    else if (this.treasureHunt[i, j] == TreasureSymbols.TREASURE)
-                    {
-                        this.dataGridView1.Rows[i].Cells[j].Value = "💰";
+                        this.dataGridView1.Rows[i].Cells[j].Style.BackColor = defaultColor;
+
+                        if (this.treasureHunt[i, j] == TreasureSymbols.START)
+                        {
+                            this.dataGridView1.Rows[i].Cells[j].Value = "🚩";
+                        }
+                        if (this.treasureHunt[i, j] == TreasureSymbols.TREASURE)
+                        {
+                            this.dataGridView1.Rows[i].Cells[j].Value = "💰";
+                        }
                     }
                 }
             }
         }
-
-        public void show_solution(List<Node> route)
+        private Task reset_map()
         {
+            for (int i = 0; i < dataGridView1.RowCount; i++)
+            {
+                for (int j = 0; j < dataGridView1.ColumnCount; j++)
+                {
+                    Color backColor = dataGridView1.Rows[i].Cells[j].Style.BackColor;
+                    if (backColor != Color.White && backColor != Color.Gray)
+                    {
+                        dataGridView1.Rows[i].Cells[j].Style.BackColor = Color.White;
+                    }
+                }
+            }
+            return Task.CompletedTask;
+        }
+
+        private void show_solution(List<Node> route)
+        {
+            // Initialize route label
+            this.lbl_routeseq.Text = "START";
+
             /* Color assignment
              Solution route => yellow */
+
             Color solutionRouteColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(181)))), ((int)(((byte)(5)))));
 
+
+            // Color all nodes that belong to solution route, including starting node
             (int startRow, int startCol) = this.treasureHunt.StartPosition;
             this.dataGridView1.Rows[startRow].Cells[startCol].Style.BackColor = solutionRouteColor;
-
-            // Color all nodes that belong to solution route
-            this.lbl_routeseq.Text = "START";
 
             foreach (Node node in route) 
             {
@@ -132,7 +158,7 @@ namespace src
             }
         }
 
-        public async Task show_progress()
+        private async Task show_progress()
         {
             List<List<Position>> PointSequence = this.treasureHunt.SearchSequence;
 
@@ -140,15 +166,17 @@ namespace src
             int pauseTime = this.fileInputGUI.pauseTime;
 
             /* Color assignment
+            Initial grid color => white
             Node being checked => darker blue
             Nodes already checked => lighter blue 
             Treasure node => red*/
 
+            Color initialGridColor = Color.White;
             Color beingCheckedColor = Color.FromArgb(((int)(((byte)(86)))), ((int)(((byte)(163)))), ((int)(((byte)(166)))));
             Color alreadyCheckedColor = Color.FromArgb(((int)(((byte)(193)))), ((int)(((byte)(219)))), ((int)(((byte)(240)))));
             Color treasureNodeColor = Color.FromArgb(((int)(((byte)(219)))), ((int)(((byte)(80)))), ((int)(((byte)(74)))));
-            Color initialGridColor = Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 
+            // Color grid sequentially based on BFS/DFS pattern
             foreach (List<Position> trace in PointSequence)
             {
                 bool previousTreasure = false;
@@ -159,7 +187,6 @@ namespace src
                     {
                         int prevRow = trace[i - 1].row;
                         int prevCol = trace[i - 1].col;
-                        
 
                         if (previousTreasure)
                         {
@@ -195,37 +222,13 @@ namespace src
                     }
                 }
             }
-
-            /*
-            // Start coloring process
-            for (int i = 0; i < PointSequence.GetLength(0); i++)
-            {
-                if (i != 0)
-                {
-                    // Mark nodes already checked
-                    int prevRow = PointSequence[i - 1, 0];
-                    int prevCol = PointSequence[i - 1, 1];
-                    this.dataGridView1.Rows[prevRow].Cells[prevCol].Style.BackColor = alreadyCheckedColor;
-                }
-
-                // Mark nodes being checked
-                int row = PointSequence[i, 0];
-                int col = PointSequence[i, 1];
-                this.dataGridView1.Rows[row].Cells[col].Style.BackColor = beingCheckedColor;
-                await Task.Delay(pauseTime);
-            }
-
-            // Mark last node as checked
-            int lastRow = PointSequence[PointSequence.GetLength(0) - 1, 0];
-            int lastCol = PointSequence[PointSequence.GetLength(0) - 1, 1];
-            this.dataGridView1.Rows[lastRow].Cells[lastCol].Style.BackColor = alreadyCheckedColor;
-             
-             */
-
-
         }
 
+        /******************* EVENT HANDLERS *******************/
+        private void VisualizeMapGUI_Load(object sender, EventArgs e)
+        {
 
+        }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -239,12 +242,26 @@ namespace src
 
         private void btn_search_Click(object sender, EventArgs e)
         {
-            handleSearchButton();
+            Task startsearch = handleSearchButton();
         }
 
         private async Task handleSearchButton()
         {
+            if (this.hasClickedStartButton)
+            {
+                // if user has clicked start button before, reset the grid first 
+                await reset_map();
+                
+            }
+            else
+            {
+                hasClickedStartButton = true; ;
+            }
+
+
             SearchType option;
+
+            // At this point, useBFS and useDFS should be disjoint, because the options are already validated in FileInputGUI
             if (this.fileInputGUI.useBFS)
             {
                 option = SearchType.BFS;
@@ -254,15 +271,17 @@ namespace src
                 option = SearchType.DFS;
             }
 
-            // timer on
+            var timer = System.Diagnostics.Stopwatch.StartNew();
+
+            // Do BFS/DFS here
             (List<Node> route, int countNodes) = this.treasureHunt.StartHunting(option, this.fileInputGUI.includeTSP, this.fileInputGUI.showSteps);
-            // timer off
+
+            timer.Stop();
 
             if (this.fileInputGUI.showSteps)
             {
                 await show_progress();
             }
-
 
             // Show solution
             show_solution(route);
@@ -270,6 +289,7 @@ namespace src
             // Write nodes, stpes, execution time to the screen
             this.lbl_nodes.Text = "Nodes " + countNodes.ToString();
             this.lbl_steps.Text = "Steps: " + route.Count.ToString();
+            this.lbl_exectime.Text = "Execution time: " + timer.ElapsedMilliseconds + " ms";
         }
 
         private void btn_back_Click(object sender, EventArgs e)
