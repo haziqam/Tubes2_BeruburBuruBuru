@@ -11,23 +11,23 @@ using MetroSet_UI.Enums;
 
 namespace src
 {
-    public partial class VisualizeMapGUI : Form
+    partial class VisualizeMapGUI : Form
     {
         // Reference to file input window, supaya bisa dapetin data dari file input GUI dan 
         // Show file input window setelah klik tombol back
         private FileInputGUI fileInputGUI;
 
         // Reference to treasureHunt, supaya bisa dapetin data peta dan method2 yang diperlukan
-        // private TreasureHunt treasureHunt;
+        private TreasureHunt treasureHunt;
 
-        public VisualizeMapGUI(FileInputGUI fileInputGUI /*, TreasureHunt treasureHunt*/)
+        public VisualizeMapGUI(FileInputGUI fileInputGUI , TreasureHunt treasureHunt)
         {
             InitializeComponent();
             this.Show();
 
             // Assign attributes
             this.fileInputGUI = fileInputGUI;
-            //this.treasureHunt = treasureHunt;
+            this.treasureHunt = treasureHunt;
 
             // Write algorithm to the screen
             if (this.fileInputGUI.useBFS)
@@ -45,11 +45,10 @@ namespace src
             }
 
             // Initialize grid view
-            initialize_dataGridView(3, 4);
-            string[,] Map = {{"K", "R", "R", "R"},
-                               {"X", "R", "X", "T"},
-                               {"X", "T", "R", "R"}};
-            fill_map(Map);
+            initialize_dataGridView(this.treasureHunt.Row, this.treasureHunt.Col);
+            
+            // Fill map
+            fill_map();
 
         }
 
@@ -83,7 +82,7 @@ namespace src
 
 
         //TO-DO: ganti parameter char[,] ke Peta
-        public void fill_map(string[,] Map)
+        public void fill_map()
         {
             // Change font, font size, and text alignment
             dataGridView1.DefaultCellStyle.Font = new Font("Open Sans", 12, FontStyle.Bold);
@@ -93,15 +92,15 @@ namespace src
             {
                 for (int j = 0; j < this.dataGridView1.ColumnCount; j++)
                 {
-                    if (Map[i, j] == "X")
+                    if (this.treasureHunt[i, j] == TreasureSymbols.BLOCK)
                     {
                         this.dataGridView1.Rows[i].Cells[j].Style.BackColor = Color.Gray;
                     }
-                    else if (Map[i, j] == "K")
+                    else if (this.treasureHunt[i, j] == TreasureSymbols.START)
                     {
                         this.dataGridView1.Rows[i].Cells[j].Value = "START";
                     }
-                    else if (Map[i, j] == "T")
+                    else if (this.treasureHunt[i, j] == TreasureSymbols.TREASURE)
                     {
                         this.dataGridView1.Rows[i].Cells[j].Value = "TREAUSRE";
                     }
@@ -110,19 +109,41 @@ namespace src
         }
 
         //TO-DO: ganti parameter char[,] ke Peta
-        public void show_solution(string[,] Map)
+        public void show_solution()
         {
+            // Get algorithm option
+            SearchType option;
+            if (this.fileInputGUI.useBFS)
+            {
+                option = SearchType.BFS;
+            }
+            else
+            {
+                option = SearchType.DFS;
+            }
+
+            // Calculate solution
+            (List<Node> route, int countSteps) = this.treasureHunt.StartHunting(option, this.fileInputGUI.includeTSP);
+
             /* Color assignment
              Solution route => yellow */
-            Color solutionRoute = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(181)))), ((int)(((byte)(5)))));
+            Color solutionRouteColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(181)))), ((int)(((byte)(5)))));
+
+            (int startRow, int startCol) = this.treasureHunt.StartPosition;
+            this.dataGridView1.Rows[startRow].Cells[startCol].Style.BackColor = solutionRouteColor;
 
             // Color all nodes that belong to solution route
-            for (int i = 0; i < this.dataGridView1.RowCount; i++)
+            this.lbl_routeseq.Text = "START";
+
+            foreach (Node node in route) 
             {
-                for (int j = 0; j < this.dataGridView1.ColumnCount; j++)
-                {
-                    // if node belong to solution route => color it
-                }
+                int row = node.row;
+                int col = node.col;
+                char choice = node.choice;
+                this.dataGridView1.Rows[row].Cells[col].Style.BackColor = solutionRouteColor;
+                this.lbl_routeseq.Text += " - " + choice;
+
+
             }
         }
 
@@ -136,8 +157,8 @@ namespace src
             Node being checked => darker blue
             Nodes already checked => lighter blue */
 
-            Color beingChecked = System.Drawing.Color.FromArgb(((int)(((byte)(86)))), ((int)(((byte)(163)))), ((int)(((byte)(166)))));
-            Color alreadyChecked = System.Drawing.Color.FromArgb(((int)(((byte)(193)))), ((int)(((byte)(219)))), ((int)(((byte)(240)))));
+            Color beingCheckedColor = System.Drawing.Color.FromArgb(((int)(((byte)(86)))), ((int)(((byte)(163)))), ((int)(((byte)(166)))));
+            Color alreadyCheckedColor = System.Drawing.Color.FromArgb(((int)(((byte)(193)))), ((int)(((byte)(219)))), ((int)(((byte)(240)))));
 
             // Start coloring process
             for (int i = 0; i < PointSequence.GetLength(0); i++)
@@ -147,20 +168,20 @@ namespace src
                     // Mark nodes already checked
                     int prevRow = PointSequence[i - 1, 0];
                     int prevCol = PointSequence[i - 1, 1];
-                    this.dataGridView1.Rows[prevRow].Cells[prevCol].Style.BackColor = alreadyChecked;
+                    this.dataGridView1.Rows[prevRow].Cells[prevCol].Style.BackColor = alreadyCheckedColor;
                 }
 
                 // Mark nodes being checked
                 int row = PointSequence[i, 0];
                 int col = PointSequence[i, 1];
-                this.dataGridView1.Rows[row].Cells[col].Style.BackColor = beingChecked;
+                this.dataGridView1.Rows[row].Cells[col].Style.BackColor = beingCheckedColor;
                 await Task.Delay(pauseTime);
             }
 
             // Mark last node as checked
             int lastRow = PointSequence[PointSequence.GetLength(0) - 1, 0];
             int lastCol = PointSequence[PointSequence.GetLength(0) - 1, 1];
-            this.dataGridView1.Rows[lastRow].Cells[lastCol].Style.BackColor = alreadyChecked;
+            this.dataGridView1.Rows[lastRow].Cells[lastCol].Style.BackColor = alreadyCheckedColor;
         }
 
        
@@ -177,13 +198,17 @@ namespace src
 
         private void btn_search_Click(object sender, EventArgs e)
         {
-            if (this.fileInputGUI.showSteps) 
+            /*
+             if (this.fileInputGUI.showSteps) 
             {
-                int[,] PointSequence = { { 0, 0 }, { 0, 1 }, { 0, 2 }, { 1, 0 }, { 0, 3 }, { 2, 1 } };
+                
                 show_progress(PointSequence);
             }
-            
+             */
+
+
             // Show solution
+            show_solution();
 
             // Write nodes, stpes, execution time, and route to the screen
         }
