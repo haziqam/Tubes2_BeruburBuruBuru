@@ -26,11 +26,15 @@ namespace src
     class TreasureHunt
     {
         private readonly Peta Map;
+        private List<List<Position>> SearchSequence { get; }
+        private bool SequenceNote;
 
         public TreasureHunt(string filePath)
         {
             string[,] matrix = ReadMatrixFromFile(filePath);
             Map = new Peta(matrix);
+            SearchSequence = new List<List<Position>>();
+            SequenceNote = false;
         }
 
         /* Getters & setters */
@@ -78,8 +82,11 @@ namespace src
 
         /* Path finding of all treasures with BFS, TSP toggle by default set to false,
             returns list of directions (final route) and number of searches  done */
-        public (List<Node>, int) StartHunting(SearchType mode, bool TSP = false)
+        public (List<Node>, int) StartHunting(SearchType mode, bool TSP = false, bool sequenceToggle = false)
         {
+            SearchSequence.Clear();
+            SequenceNote = sequenceToggle;
+
             Position oldStart = Map.startPos;   // used for TSP toggle to return to initial starting position
             Peta searchMap = new Peta(Map);     // create new map for marking
 
@@ -92,7 +99,7 @@ namespace src
                 {
                     List<Node> addPath;
                     int addCount;
-                    (addPath, addCount) = BFS(searchMap);
+                    (addPath, addCount) = BFS(searchMap, sequenceToggle);
                     path.AddRange(addPath);
                     searchCount += addCount;
                 }
@@ -103,7 +110,7 @@ namespace src
                 {
                     List<Node> addPath;
                     int addCount;
-                    (addPath, addCount) = DFS(searchMap);
+                    (addPath, addCount) = DFS(searchMap, sequenceToggle);
                     path.AddRange(addPath);
                     searchCount += addCount;
                 } 
@@ -116,7 +123,7 @@ namespace src
                 {
                     List<Node> addPath;
                     int addCount;
-                    (addPath, addCount) = BFS(searchMap);
+                    (addPath, addCount) = BFS(searchMap, sequenceToggle);
                     path.AddRange(addPath);
                     searchCount += addCount;
                 }
@@ -124,7 +131,7 @@ namespace src
                 {
                     List<Node> addPath;
                     int addCount;
-                    (addPath, addCount) = DFS(searchMap);
+                    (addPath, addCount) = DFS(searchMap, sequenceToggle);
                     path.AddRange(addPath);
                     searchCount += addCount;
                 }
@@ -134,7 +141,7 @@ namespace src
             return (path, searchCount);
         }
 
-        private (List<Node>, int) BFS(Peta searchMap)
+        private (List<Node>, int) BFS(Peta searchMap, bool sequenceToggle)
         {
             // initialize starting state
             PetaVisit isVisited = new PetaVisit(Map.nRow, Map.nCol);
@@ -143,6 +150,8 @@ namespace src
             int searchCount = -1;
             // initialize BFS Queue
             Queue<Node> memo = new Queue<Node>();
+            // initialize sequence memo for this search
+            List<Position> positionSequence = new List<Position>();
 
             // enqueue dummy initial search (starting position)
             memo.Enqueue(new Node(searchMap.startPos, Directions.STARTDUMMY));
@@ -153,6 +162,8 @@ namespace src
                 searchCount++;
                 currNode = memo.Dequeue();
                 currPos = currNode.position;
+                // if enabled, note searching sequence
+                if(sequenceToggle) positionSequence.Add(currPos);
 
                 isVisited.visit(currPos);
                 
@@ -208,6 +219,9 @@ namespace src
                 }
                 path.Reverse();
 
+                // only append to search sequence if enabled, otherwise memory inefficient
+                if(sequenceToggle) SearchSequence.Add(positionSequence);
+
                 return (path, searchCount);
             }
             else
@@ -216,7 +230,7 @@ namespace src
             }
         }
 
-        private (List<Node>, int) DFS(Peta searchMap)
+        private (List<Node>, int) DFS(Peta searchMap, bool sequenceToggle)
         {
             // initialize starting state
             PetaVisit isVisited = new PetaVisit(Map.nRow, Map.nCol);
@@ -225,6 +239,8 @@ namespace src
             int searchCount = -1;
             // initialize DFS Stack
             Stack<Node> memo = new Stack<Node>();
+            // initialize sequence memo for this search
+            List<Position> positionSequence = new List<Position>();
 
             // push dummy initial search (starting position)
             memo.Push(new Node(searchMap.startPos, Directions.STARTDUMMY));
@@ -235,6 +251,8 @@ namespace src
                 searchCount++;
                 currNode = memo.Pop();
                 currPos = currNode.position;
+                // if enabled, note searching sequence
+                if(sequenceToggle) positionSequence.Add(currPos);
 
                 isVisited.visit(currPos);
 
@@ -280,6 +298,9 @@ namespace src
                     currNode = currNode.parent;
                 }
                 path.Reverse();
+
+                // only append to search sequence if enabled, otherwise memory inefficient
+                if(sequenceToggle) SearchSequence.Add(positionSequence);
 
                 return (path, searchCount);
             }
