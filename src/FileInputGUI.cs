@@ -106,7 +106,7 @@ namespace src
                 errorMsg = "Please pick pause time if you wish to show steps!";
             }
 
-            TreasureHunt treasureHunt;
+            TreasureHunt? treasureHunt = null;
             string filePath;
 
             // Try opening file path
@@ -140,7 +140,7 @@ namespace src
             {
                 // Change window to visualizeMapGUI
                 this.Hide();
-                VisualizeMapGUI mapGUI = new(this);
+                VisualizeMapGUI mapGUI = new(this, treasureHunt);
 
                 // To handle mapGUI form closing event (see MapGUI_FormClosing() method below)
                 mapGUI.FormClosing += MapGUI_FormClosing;
