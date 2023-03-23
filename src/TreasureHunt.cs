@@ -99,6 +99,8 @@ namespace src
         public int Row => Map.nRow;
         public int Col => Map.nCol;
 
+        public (int, int) StartPosition => Map.startPos.coord;
+
         private string[,] ReadMatrixFromFile(string filePath) {
             // read all lines from file
             string[] lines = System.IO.File.ReadAllLines(filePath);
