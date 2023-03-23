@@ -34,6 +34,7 @@ namespace src
         public bool useDFS { get; private set; } = false;
         public bool showSteps { get; private set; } = false;
         public bool includeTSP { get; private set; } = false;
+        public int pauseTime { get; private set; } = 0;
 
         public FileInputGUI()
         {
@@ -206,7 +207,12 @@ namespace src
 
         private void cbo_ms_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            int[] pauseTimeOptions = { 250, 500, 1000, 2000 };
+            int index = this.cbo_ms.SelectedIndex;
+            if (index != -1)
+            {
+                this.pauseTime =  pauseTimeOptions[index];
+            }            
         }
 
         private void lbl_pausetime_Click(object sender, EventArgs e)

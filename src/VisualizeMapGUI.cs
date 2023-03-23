@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MetroSet_UI.Enums;
 
 namespace src
 {
@@ -84,14 +85,14 @@ namespace src
         //TO-DO: ganti parameter char[,] ke Peta
         public void fill_map(string[,] Map)
         {
-            for (int i = 0; i < Map.GetLength(0); i++)
+            // Change font, font size, and text alignment
+            dataGridView1.DefaultCellStyle.Font = new Font("Open Sans", 12, FontStyle.Bold);
+            dataGridView1.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+            for (int i = 0; i < this.dataGridView1.RowCount; i++)
             {
-                for (int j = 0; j < Map.GetLength(1); j++)
+                for (int j = 0; j < this.dataGridView1.ColumnCount; j++)
                 {
-                    this.dataGridView1.Rows[i].Cells[j].Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                    // TO-DO: ubah juga font, ukuran, dan warna tulisannya 
-
-
                     if (Map[i, j] == "X")
                     {
                         this.dataGridView1.Rows[i].Cells[j].Style.BackColor = Color.Gray;
@@ -111,12 +112,26 @@ namespace src
         //TO-DO: ganti parameter char[,] ke Peta
         public void show_solution(string[,] Map)
         {
-            
+            /* Color assignment
+             Solution route => yellow */
+            Color solutionRoute = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(181)))), ((int)(((byte)(5)))));
+
+            // Color all nodes that belong to solution route
+            for (int i = 0; i < this.dataGridView1.RowCount; i++)
+            {
+                for (int j = 0; j < this.dataGridView1.ColumnCount; j++)
+                {
+                    // if node belong to solution route => color it
+                }
+            }
         }
 
         //TO-DO: ganti parameter int[,] ke List<int[]>
-        public async Task show_progress(int[,] PointSequence, int pauseTime)
+        public async Task show_progress(int[,] PointSequence)
         {
+            // Get pause time
+            int pauseTime = this.fileInputGUI.pauseTime;
+
             /* Color assignment
             Node being checked => darker blue
             Nodes already checked => lighter blue */
@@ -165,10 +180,12 @@ namespace src
             if (this.fileInputGUI.showSteps) 
             {
                 int[,] PointSequence = { { 0, 0 }, { 0, 1 }, { 0, 2 }, { 1, 0 }, { 0, 3 }, { 2, 1 } };
-                show_progress(PointSequence, 1000);
+                show_progress(PointSequence);
             }
             
             // Show solution
+
+            // Write nodes, stpes, execution time, and route to the screen
         }
 
         private void btn_back_Click(object sender, EventArgs e)
