@@ -204,6 +204,16 @@ namespace src
             peta[x.row, x.col] = true;
         }
 
+        /* tryVisit simulates checking and visiting the map, if it is visited before, returns true.
+            Otherwise, returns that it is not visited before, then sets the position to true */
+        // basically TestAndSet
+        public bool tryVisit(Position x)
+        {
+            bool visited = peta[x.row, x.col];
+            peta[x.row, x.col] = true;
+            return visited;
+        }
+
         public void resetVisit()
         {
             for(int i = 0; i < nRow; i++)
