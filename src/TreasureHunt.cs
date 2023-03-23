@@ -160,9 +160,9 @@ namespace src
             Position currPos;
             do
             {
-                searchCount++;
                 currNode = memo.Dequeue();
                 currPos = currNode.position;
+                searchCount++;
                 // if enabled, note searching sequence
                 if(sequenceToggle) positionSequence.Add(currPos);
                 
@@ -242,44 +242,46 @@ namespace src
             List<Position> positionSequence = new List<Position>();
 
             // push dummy initial search (starting position)
-            isVisited.visit(searchMap.startPos);
             memo.Push(new Node(searchMap.startPos, Directions.STARTDUMMY));
             Node currNode;
             Position currPos;
             do
             {
-                searchCount++;
                 currNode = memo.Pop();
                 currPos = currNode.position;
+
+                if(isVisited.tryVisit(currPos)) continue;
+
+                searchCount++;
                 // if enabled, note searching sequence
                 if(sequenceToggle) positionSequence.Add(currPos);
 
                 // checking priority: up, right, down, left (clockwise direction)
                 // check if going up is valid
                 Position temp;
-                if (searchMap.isUpValid(currPos))
+                // check if going left is valid
+                if (searchMap.isLeftValid(currPos))
                 {
                     // check if grid has not been traversed before during this search
-                    temp = currPos.up();
-                    if (!isVisited.tryVisit(temp)) memo.Push(new Node(temp, Directions.UP, currNode));
-                }
-                // check if going right is valid
-                if (searchMap.isRightValid(currPos))
-                {
-                    temp = currPos.right();
-                    if (!isVisited.tryVisit(temp)) memo.Push(new Node(temp, Directions.RIGHT, currNode));
+                    temp = currPos.left();
+                    if (!isVisited[temp.row, temp.col]) memo.Push(new Node(temp, Directions.LEFT, currNode));
                 }
                 // check if going down is valid
                 if (searchMap.isDownValid(currPos))
                 {
                     temp = currPos.down();
-                    if (!isVisited.tryVisit(temp)) memo.Push(new Node(temp, Directions.DOWN, currNode));
+                    if (!isVisited[temp.row, temp.col]) memo.Push(new Node(temp, Directions.DOWN, currNode));
                 }
-                // check if going left is valid
-                if (searchMap.isLeftValid(currPos))
+                // check if going right is valid
+                if (searchMap.isRightValid(currPos))
                 {
-                    temp = currPos.left();
-                    if (!isVisited.tryVisit(temp)) memo.Push(new Node(temp, Directions.LEFT, currNode));
+                    temp = currPos.right();
+                    if (!isVisited[temp.row, temp.col]) memo.Push(new Node(temp, Directions.RIGHT, currNode));
+                }
+                if (searchMap.isUpValid(currPos))
+                {
+                    temp = currPos.up();
+                    if (!isVisited[temp.row, temp.col]) memo.Push(new Node(temp, Directions.UP, currNode));
                 }
 
             } while(!searchMap.isTreasure(currPos) && (memo.Count != 0));
