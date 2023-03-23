@@ -147,6 +147,7 @@ namespace src
             Color beingCheckedColor = Color.FromArgb(((int)(((byte)(86)))), ((int)(((byte)(163)))), ((int)(((byte)(166)))));
             Color alreadyCheckedColor = Color.FromArgb(((int)(((byte)(193)))), ((int)(((byte)(219)))), ((int)(((byte)(240)))));
             Color treasureNodeColor = Color.FromArgb(((int)(((byte)(219)))), ((int)(((byte)(80)))), ((int)(((byte)(74)))));
+            Color initialGridColor = Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 
             foreach (List<Position> trace in PointSequence)
             {
@@ -174,6 +175,24 @@ namespace src
                     previousTreasure = (this.dataGridView1.Rows[currentRow].Cells[currentCol].Style.BackColor == treasureNodeColor);
                     this.dataGridView1.Rows[currentRow].Cells[currentCol].Style.BackColor = beingCheckedColor;
                     await Task.Delay(pauseTime);
+                }
+                // set treasure node with treasure color
+                Position lastNode = trace.Last();
+                this.dataGridView1.Rows[lastNode.row].Cells[lastNode.col].Style.BackColor = treasureNodeColor;
+
+                // reset color (clear previous path checking)
+                for (int i = 0; i < trace.Count; i++)
+                {
+                    int currentRow = trace[i].row;
+                    int currentCol = trace[i].col;
+                    if (this.dataGridView1.Rows[currentRow].Cells[currentCol].Style.BackColor == treasureNodeColor)
+                    {
+                        // do nothing
+                    }
+                    else
+                    {
+                        this.dataGridView1.Rows[currentRow].Cells[currentCol].Style.BackColor = Color.White;
+                    }
                 }
             }
 
@@ -249,7 +268,7 @@ namespace src
             show_solution(route);
 
             // Write nodes, stpes, execution time to the screen
-            this.lbl_steps.Text += countNodes;
+            this.lbl_nodes.Text = countNodes.ToString();
         }
 
         private void btn_back_Click(object sender, EventArgs e)
