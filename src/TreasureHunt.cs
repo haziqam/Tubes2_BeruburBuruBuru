@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-// using System.IO.File;
-using System.Linq;
 using System.Text;
 
 /* Adapted Treasure hunt for new data structure, using same algorithm as previous model */
@@ -9,64 +7,6 @@ using System.Text;
 
 namespace src
 {
-    public class InvalidInputSymbolException : Exception
-    {
-        public InvalidInputSymbolException(int row, int col)
-            : base("Invalid input symbol at line " + row + ", column " + col)
-        {
-        }
-
-        public InvalidInputSymbolException(int row)
-            : base("Invalid input symbol at line " + row)
-        {
-        }
-    }
-
-    public class InvalidStartSymbolException : Exception
-    {
-        public InvalidStartSymbolException(int row, int col)
-            : base("Duplicate start symbol exists at line " + row + ", column " + col)
-        {
-        }
-        
-        public InvalidStartSymbolException()
-            : base("No start symbol found!")
-        {
-        }
-    }
-
-    public class TreasureNotConnectedException : Exception
-    {
-        public TreasureNotConnectedException()
-            : base("Treasure is not connected to starting point!")
-        {
-        }
-    }
-
-    static class TreasureSymbols
-    {
-        // public static const HashSet<char> Symbols = {START, TREASURE, PATH, BLOCK};
-        public const char START = 'K';
-        public const char TREASURE = 'T';
-        public const char PATH = 'R';
-        public const char BLOCK = 'X';
-    }
-
-    static class Directions
-    {
-        public const char UP = 'U';
-        public const char RIGHT = 'R';
-        public const char DOWN = 'D';
-        public const char LEFT = 'L';
-        public const char STARTDUMMY = 'S';
-    }
-
-    enum SearchType
-    {
-        BFS,
-        DFS
-    }
-
     class Node
     {
         public readonly Position position;
