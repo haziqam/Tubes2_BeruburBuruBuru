@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using MetroSet_UI.Enums;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace src
 {
@@ -88,6 +89,7 @@ namespace src
             dataGridView1.DefaultCellStyle.Font = new Font("Open Sans", 12, FontStyle.Bold);
             dataGridView1.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
+            // Fill each cells of datagrid
             for (int i = 0; i < this.dataGridView1.RowCount; i++)
             {
                 for (int j = 0; j < this.dataGridView1.ColumnCount; j++)
@@ -98,33 +100,18 @@ namespace src
                     }
                     else if (this.treasureHunt[i, j] == TreasureSymbols.START)
                     {
-                        this.dataGridView1.Rows[i].Cells[j].Value = "START";
+                        this.dataGridView1.Rows[i].Cells[j].Value = "🚩";
                     }
                     else if (this.treasureHunt[i, j] == TreasureSymbols.TREASURE)
                     {
-                        this.dataGridView1.Rows[i].Cells[j].Value = "TREAUSRE";
+                        this.dataGridView1.Rows[i].Cells[j].Value = "💰";
                     }
                 }
             }
         }
 
-        //TO-DO: ganti parameter char[,] ke Peta
-        public void show_solution()
+        public void show_solution(List<Node> route)
         {
-            // Get algorithm option
-            SearchType option;
-            if (this.fileInputGUI.useBFS)
-            {
-                option = SearchType.BFS;
-            }
-            else
-            {
-                option = SearchType.DFS;
-            }
-
-            // Calculate solution
-            (List<Node> route, int countSteps) = this.treasureHunt.StartHunting(option, this.fileInputGUI.includeTSP);
-
             /* Color assignment
              Solution route => yellow */
             Color solutionRouteColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(181)))), ((int)(((byte)(5)))));
@@ -142,24 +129,55 @@ namespace src
                 char choice = node.choice;
                 this.dataGridView1.Rows[row].Cells[col].Style.BackColor = solutionRouteColor;
                 this.lbl_routeseq.Text += " - " + choice;
-
-
             }
         }
 
-        //TO-DO: ganti parameter int[,] ke List<int[]>
-        public async Task show_progress(int[,] PointSequence)
+        public async Task show_progress()
         {
+            List<List<Position>> PointSequence = this.treasureHunt.SearchSequence;
+
             // Get pause time
             int pauseTime = this.fileInputGUI.pauseTime;
 
             /* Color assignment
             Node being checked => darker blue
-            Nodes already checked => lighter blue */
+            Nodes already checked => lighter blue 
+            Treasure node => red*/
 
-            Color beingCheckedColor = System.Drawing.Color.FromArgb(((int)(((byte)(86)))), ((int)(((byte)(163)))), ((int)(((byte)(166)))));
-            Color alreadyCheckedColor = System.Drawing.Color.FromArgb(((int)(((byte)(193)))), ((int)(((byte)(219)))), ((int)(((byte)(240)))));
+            Color beingCheckedColor = Color.FromArgb(((int)(((byte)(86)))), ((int)(((byte)(163)))), ((int)(((byte)(166)))));
+            Color alreadyCheckedColor = Color.FromArgb(((int)(((byte)(193)))), ((int)(((byte)(219)))), ((int)(((byte)(240)))));
+            Color treasureNodeColor = Color.FromArgb(((int)(((byte)(219)))), ((int)(((byte)(80)))), ((int)(((byte)(74)))));
 
+            foreach (List<Position> trace in PointSequence)
+            {
+                bool previousTreasure = false;
+                for (int i = 0; i < trace.Count; i++)
+                {
+                    
+                    if (i != 0)
+                    {
+                        int prevRow = trace[i - 1].row;
+                        int prevCol = trace[i - 1].col;
+                        
+
+                        if (previousTreasure)
+                        {
+                            this.dataGridView1.Rows[prevRow].Cells[prevCol].Style.BackColor = treasureNodeColor;
+                        }
+                        else
+                        {
+                            this.dataGridView1.Rows[prevRow].Cells[prevCol].Style.BackColor = alreadyCheckedColor;
+                        }
+                    }
+                    int currentRow = trace[i].row;
+                    int currentCol = trace[i].col;
+                    previousTreasure = (this.dataGridView1.Rows[currentRow].Cells[currentCol].Style.BackColor == treasureNodeColor);
+                    this.dataGridView1.Rows[currentRow].Cells[currentCol].Style.BackColor = beingCheckedColor;
+                    await Task.Delay(pauseTime);
+                }
+            }
+
+            /*
             // Start coloring process
             for (int i = 0; i < PointSequence.GetLength(0); i++)
             {
@@ -182,9 +200,13 @@ namespace src
             int lastRow = PointSequence[PointSequence.GetLength(0) - 1, 0];
             int lastCol = PointSequence[PointSequence.GetLength(0) - 1, 1];
             this.dataGridView1.Rows[lastRow].Cells[lastCol].Style.BackColor = alreadyCheckedColor;
+             
+             */
+
+
         }
 
-       
+
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -198,19 +220,36 @@ namespace src
 
         private void btn_search_Click(object sender, EventArgs e)
         {
-            /*
-             if (this.fileInputGUI.showSteps) 
+            handleSearchButton();
+        }
+
+        private async Task handleSearchButton()
+        {
+            SearchType option;
+            if (this.fileInputGUI.useBFS)
             {
-                
-                show_progress(PointSequence);
+                option = SearchType.BFS;
             }
-             */
+            else
+            {
+                option = SearchType.DFS;
+            }
+
+            // timer on
+            (List<Node> route, int countNodes) = this.treasureHunt.StartHunting(option, this.fileInputGUI.includeTSP, this.fileInputGUI.showSteps);
+            // timer off
+
+            if (this.fileInputGUI.showSteps)
+            {
+                await show_progress();
+            }
 
 
             // Show solution
-            show_solution();
+            show_solution(route);
 
-            // Write nodes, stpes, execution time, and route to the screen
+            // Write nodes, stpes, execution time to the screen
+            this.lbl_steps.Text += countNodes;
         }
 
         private void btn_back_Click(object sender, EventArgs e)

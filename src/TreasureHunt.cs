@@ -26,7 +26,7 @@ namespace src
     class TreasureHunt
     {
         private readonly Peta Map;
-        private List<List<Position>> SearchSequence { get; }
+        public List<List<Position>> SearchSequence { get; private set; }
         private bool SequenceNote;
 
         public TreasureHunt(string filePath)

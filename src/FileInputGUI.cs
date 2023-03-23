@@ -59,7 +59,7 @@ namespace src
             this.useDFS = false;
         }
 
-        private void btn_DFS_CheckedChanged(object sender, EventArgs e)
+        private void rdo_DFS_CheckedChanged(object sender, EventArgs e)
         {
             this.useDFS = true;
             this.useBFS = false;
@@ -225,5 +225,7 @@ namespace src
             this.useDefaultPath = true;
             this.lbl_usedefaultpath.Text = "use default path (test folder): True";
         }
+
+        
     }
 }

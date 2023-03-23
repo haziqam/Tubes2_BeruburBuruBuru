@@ -198,6 +198,7 @@ namespace src
             this.rdo_DFS.TabStop = true;
             this.rdo_DFS.Text = "DFS";
             this.rdo_DFS.UseVisualStyleBackColor = true;
+            this.rdo_DFS.CheckedChanged += new System.EventHandler(this.rdo_DFS_CheckedChanged);
             // 
             // lbl_TSP
             // 
