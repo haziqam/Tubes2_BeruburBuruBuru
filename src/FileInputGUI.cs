@@ -29,15 +29,18 @@ namespace src
 {
     public partial class FileInputGUI : Form
     {
-        private bool useDefaultPath; // default path: test folder
-        private bool useBFS;
-        private bool useDFS;
-        private bool showSteps = false;
-        private bool includeTSP = false;
+        public bool useDefaultPath { get; private set; } = true; // default path: test folder
+        public bool useBFS { get; private set; } = false;
+        public bool useDFS { get; private set; } = false;
+        public bool showSteps { get; private set; } = false;
+        public bool includeTSP { get; private set; } = false;
+        public int pauseTime { get; private set; } = 0;
 
         public FileInputGUI()
         {
             InitializeComponent();
+            this.lbl_pausetime.Hide();
+            this.cbo_ms.Hide();
         }
 
         private void fontDialog1_Apply(object sender, EventArgs e)
@@ -48,10 +51,6 @@ namespace src
         private void GUI_Load(object sender, EventArgs e)
         {
 
-        }
-        private void txt_filename_TextChanged(object sender, EventArgs e)
-        {
-            this.useDefaultPath = true;   
         }
 
         private void rdo_BFS_CheckedChanged(object sender, EventArgs e)
@@ -73,10 +72,12 @@ namespace src
 
         private void btn_browse_Click(object sender, EventArgs e)
         {
+            
             if (ofd_browseFile.ShowDialog() == DialogResult.OK)
             {
                 txt_filename.Text = ofd_browseFile.FileName;
                 this.useDefaultPath = false;
+                this.lbl_usedefaultpath.Text = "use default path (test folder): False";
             }
 
         }
@@ -86,6 +87,7 @@ namespace src
             bool isError = false;
             string errorMsg = "";
 
+            // Detect early error from GUI
             if (this.txt_filename.Text == "")
             {
                 isError = true;
@@ -104,43 +106,46 @@ namespace src
                 errorMsg = "Please pick pause time if you wish to show steps!";
             }
 
+            TreasureHunt treasureHunt;
+            string filePath;
+
+            // Try opening file path
             try
             {
-                TreasureHunt th = new TreasureHunt(this.txt_filename.Text);
+                filePath = txt_filename.Text;
+                if (this.useDefaultPath)
+                {
+                    // Nanti pas bin nya dipindahin, ini jadi gini
+                    // filePath = "../test/" + filePath;
+                    filePath = "../../../../test/" + filePath;
+                }
+                
+                treasureHunt = new TreasureHunt(filePath);
 
             }
-            catch()
+            catch(Exception err)
             {
-
+                isError = true;
+                errorMsg = err.Message;
             }
-
+            
             if (isError)
             {
+                // Show error box
                 ErrorBox errorBox = new();
                 errorBox.setErrorMsg(errorMsg);
                 errorBox.ShowDialog();
             }
+            else
+            {
+                // Change window to visualizeMapGUI
+                this.Hide();
+                VisualizeMapGUI mapGUI = new(this);
 
+                // To handle mapGUI form closing event (see MapGUI_FormClosing() method below)
+                mapGUI.FormClosing += MapGUI_FormClosing;
+            }
 
-
-            VisualizeMapGUI mapGUI = new();
-
-            this.Hide();
-
-            // To handle mapGUI form closing event (see MapGUI_FormClosing() method below)
-            mapGUI.FormClosing += MapGUI_FormClosing;
-
-            mapGUI.Show();
-
-            // Construct a TreasureHunt object here
-
-            mapGUI.initialize_dataGridView(3, 4);
-            char[,] Map = {{'K', 'R', 'R', 'R'},
-                           {'X', 'R', 'X', 'T'},
-                           {'X', 'T', 'R', 'R'}};
-            int[,] PointSequence = { { 0, 0 }, { 0, 1 }, { 1, 1 }, { 2, 1 }, { 2, 2 }, { 2, 3 }, { 1, 3 } };
-            mapGUI.fill_map(Map);
-           
         }
 
         private void ofd_browseFile_FileOk(object sender, CancelEventArgs e)
@@ -202,12 +207,23 @@ namespace src
 
         private void cbo_ms_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            int[] pauseTimeOptions = { 250, 500, 1000, 2000 };
+            int index = this.cbo_ms.SelectedIndex;
+            if (index != -1)
+            {
+                this.pauseTime =  pauseTimeOptions[index];
+            }            
         }
 
         private void lbl_pausetime_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void txt_filename_TextChanged_1(object sender, EventArgs e)
+        {
+            this.useDefaultPath = true;
+            this.lbl_usedefaultpath.Text = "use default path (test folder): True";
         }
     }
 }

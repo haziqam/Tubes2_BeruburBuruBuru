@@ -74,7 +74,7 @@
             // 
             // lbl_errorMsg
             // 
-            this.lbl_errorMsg.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lbl_errorMsg.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.lbl_errorMsg.ForeColor = System.Drawing.Color.White;
             this.lbl_errorMsg.Location = new System.Drawing.Point(27, 97);
             this.lbl_errorMsg.Name = "lbl_errorMsg";
