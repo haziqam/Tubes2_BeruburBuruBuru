@@ -72,6 +72,9 @@ namespace src
         public readonly Position position;
         public readonly char choice;
         public readonly Node? parent;
+
+        public int row => position.row;
+        public int col => position.col;
         
         public Node(Position position, char choice, Node? parent = null) {
             this.position = position;
