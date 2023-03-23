@@ -19,7 +19,7 @@ Dalam tugas besar ini, Anda akan diminta untuk membangun sebuah aplikasi GUI sed
 
 ## Cara Menjalankan Program
 1. Lakukan git clone terhadap repositori ini atau Unduh ZIP
-2. Buka folder `bin/Debug/net7.0-windows` pada folder repositori
+2. Buka folder `src/bin/Debug/net7.0-windows` pada folder repositori
 3. Jalankan file `src.exe`
 
 ## Authors
