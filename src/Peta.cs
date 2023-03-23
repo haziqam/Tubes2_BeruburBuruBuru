@@ -91,9 +91,10 @@ namespace src
 
         public bool isUpValid(Position x)
         {
-            if (0 <= x.row-1)
+            int newRow = x.row-1;
+            if (0 <= newRow)
             {
-                return peta[x.row, x.col] != TreasureSymbols.BLOCK;
+                return peta[newRow, x.col] != TreasureSymbols.BLOCK;
             }
             return false;
 
@@ -101,27 +102,30 @@ namespace src
 
         public bool isRightValid(Position x)
         {
-            if (x.col+1 < nCol)
+            int newCol = x.col+1;
+            if (newCol < nCol)
             {
-                return peta[x.row, x.col] != TreasureSymbols.BLOCK;
+                return peta[x.row, newCol] != TreasureSymbols.BLOCK;
             }
             return false;
         }
 
         public bool isDownValid(Position x)
         {
-            if (x.row+1 < nRow)
+            int newRow = x.row+1;
+            if (newRow < nRow)
             {
-                return peta[x.row, x.col] != TreasureSymbols.BLOCK;
+                return peta[newRow, x.col] != TreasureSymbols.BLOCK;
             }
             return false;
         }
 
         public bool isLeftValid(Position x)
         {
-            if (0 <= x.col-1)
+            int newCol = x.col-1;
+            if (0 <= newCol)
             {
-                return peta[x.row, x.col] != TreasureSymbols.BLOCK;
+                return peta[x.row, newCol] != TreasureSymbols.BLOCK;
             }
             return false;
         }
