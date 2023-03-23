@@ -51,6 +51,7 @@ namespace src
             this.txt_filename = new System.Windows.Forms.TextBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.lbl_usedefaultpath = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -62,7 +63,7 @@ namespace src
             this.lbl_filename.AutoSize = true;
             this.lbl_filename.Font = new System.Drawing.Font("Open Sans Light", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.lbl_filename.ForeColor = System.Drawing.SystemColors.Window;
-            this.lbl_filename.Location = new System.Drawing.Point(101, 100);
+            this.lbl_filename.Location = new System.Drawing.Point(101, 80);
             this.lbl_filename.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
             this.lbl_filename.Name = "lbl_filename";
             this.lbl_filename.Size = new System.Drawing.Size(197, 38);
@@ -104,7 +105,7 @@ namespace src
             this.btn_browse.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btn_browse.Font = new System.Drawing.Font("Open Sans", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btn_browse.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btn_browse.Location = new System.Drawing.Point(305, 214);
+            this.btn_browse.Location = new System.Drawing.Point(305, 207);
             this.btn_browse.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
             this.btn_browse.Name = "btn_browse";
             this.btn_browse.Size = new System.Drawing.Size(187, 47);
@@ -304,10 +305,11 @@ namespace src
             this.txt_filename.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txt_filename.Font = new System.Drawing.Font("Open Sans Light", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.txt_filename.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.txt_filename.Location = new System.Drawing.Point(36, 150);
+            this.txt_filename.Location = new System.Drawing.Point(36, 130);
             this.txt_filename.Name = "txt_filename";
             this.txt_filename.Size = new System.Drawing.Size(456, 39);
             this.txt_filename.TabIndex = 15;
+            this.txt_filename.TextChanged += new System.EventHandler(this.txt_filename_TextChanged_1);
             // 
             // pictureBox1
             // 
@@ -322,12 +324,23 @@ namespace src
             // pictureBox2
             // 
             this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.Location = new System.Drawing.Point(46, 98);
+            this.pictureBox2.Location = new System.Drawing.Point(46, 78);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(40, 40);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox2.TabIndex = 17;
             this.pictureBox2.TabStop = false;
+            // 
+            // lbl_usedefaultpath
+            // 
+            this.lbl_usedefaultpath.AutoSize = true;
+            this.lbl_usedefaultpath.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lbl_usedefaultpath.ForeColor = System.Drawing.Color.Red;
+            this.lbl_usedefaultpath.Location = new System.Drawing.Point(39, 176);
+            this.lbl_usedefaultpath.Name = "lbl_usedefaultpath";
+            this.lbl_usedefaultpath.Size = new System.Drawing.Size(212, 21);
+            this.lbl_usedefaultpath.TabIndex = 18;
+            this.lbl_usedefaultpath.Text = "use default path (test folder): ";
             // 
             // FileInputGUI
             // 
@@ -335,6 +348,7 @@ namespace src
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(36)))), ((int)(((byte)(41)))));
             this.ClientSize = new System.Drawing.Size(528, 711);
+            this.Controls.Add(this.lbl_usedefaultpath);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.txt_filename);
@@ -346,7 +360,7 @@ namespace src
             this.Controls.Add(this.lbl_filename);
             this.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
             this.Name = "FileInputGUI";
-            this.Text = "S";
+            this.Text = "TreasureHunt";
             this.Load += new System.EventHandler(this.GUI_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
@@ -381,5 +395,6 @@ namespace src
         private Label lbl_algorithm;
         private Label label1;
         private Label lbl_pausetime;
+        private Label lbl_usedefaultpath;
     }
 }
