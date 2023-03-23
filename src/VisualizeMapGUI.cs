@@ -268,7 +268,8 @@ namespace src
             show_solution(route);
 
             // Write nodes, stpes, execution time to the screen
-            this.lbl_nodes.Text = countNodes.ToString();
+            this.lbl_nodes.Text = "Nodes " + countNodes.ToString();
+            this.lbl_steps.Text = "Steps: " + route.Count.ToString();
         }
 
         private void btn_back_Click(object sender, EventArgs e)
