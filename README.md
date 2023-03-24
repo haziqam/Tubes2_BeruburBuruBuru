@@ -31,4 +31,4 @@ Dalam tugas besar ini, Anda akan diminta untuk membangun sebuah aplikasi GUI sed
 | 13521170 | Haziq Abiyyu Mahdy          |
 
 ## Link Demo Program
-* [Tugas Besar II IF2211 Strategi Algoritma tahun 2022/2023]()
+* [Tugas Besar II IF2211 Strategi Algoritma tahun 2022/2023](https://youtu.be/yIEm-N9sZ20)
