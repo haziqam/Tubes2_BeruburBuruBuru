@@ -6,11 +6,7 @@
     <Nullable>enable</Nullable>
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
-    <AssemblyName>TreasureHunt</AssemblyName>
-    <BaseOutputPath>../bin/</BaseOutputPath>
-	<OutputPath>../bin/</OutputPath>
-	<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
-
+    <AssemblyName>$(TreasureHunt)</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>

@@ -9,14 +9,19 @@ D:\University\Tubes2_BeruburBuruBuru\src\obj\Debug\net7.0-windows\src.GeneratedM
 D:\University\Tubes2_BeruburBuruBuru\src\obj\Debug\net7.0-windows\src.AssemblyInfoInputs.cache
 D:\University\Tubes2_BeruburBuruBuru\src\obj\Debug\net7.0-windows\src.AssemblyInfo.cs
 D:\University\Tubes2_BeruburBuruBuru\src\obj\Debug\net7.0-windows\src.csproj.CoreCompileInputs.cache
-D:\University\Tubes2_BeruburBuruBuru\src\obj\Debug\net7.0-windows\src.dll
-D:\University\Tubes2_BeruburBuruBuru\src\obj\Debug\net7.0-windows\refint\src.dll
-D:\University\Tubes2_BeruburBuruBuru\src\obj\Debug\net7.0-windows\src.pdb
 D:\University\Tubes2_BeruburBuruBuru\src\obj\Debug\net7.0-windows\src.genruntimeconfig.cache
-D:\University\Tubes2_BeruburBuruBuru\src\obj\Debug\net7.0-windows\ref\src.dll
 D:\University\Tubes2_BeruburBuruBuru\src\obj\Debug\net7.0-windows\src.VisualizeMapGUI.resources
 D:\University\Tubes2_BeruburBuruBuru\src\obj\Debug\net7.0-windows\src.Properties.Resources.resources
 D:\University\Tubes2_BeruburBuruBuru\src\obj\Debug\net7.0-windows\src.csproj.CopyComplete
 D:\University\Tubes2_BeruburBuruBuru\src\bin\Debug\net7.0-windows\MetroSet UI.dll
 D:\University\Tubes2_BeruburBuruBuru\src\obj\Debug\net7.0-windows\src.FileInputGUI.resources
 D:\University\Tubes2_BeruburBuruBuru\src\obj\Debug\net7.0-windows\src.ErrorBox.resources
+D:\University\Tubes2_BeruburBuruBuru\bin\Debug\net7.0-windows\TreasureHunt.exe
+D:\University\Tubes2_BeruburBuruBuru\bin\Debug\net7.0-windows\TreasureHunt.deps.json
+D:\University\Tubes2_BeruburBuruBuru\bin\Debug\net7.0-windows\TreasureHunt.runtimeconfig.json
+D:\University\Tubes2_BeruburBuruBuru\bin\Debug\net7.0-windows\TreasureHunt.dll
+D:\University\Tubes2_BeruburBuruBuru\bin\Debug\net7.0-windows\TreasureHunt.pdb
+D:\University\Tubes2_BeruburBuruBuru\src\obj\Debug\net7.0-windows\TreasureHunt.dll
+D:\University\Tubes2_BeruburBuruBuru\src\obj\Debug\net7.0-windows\refint\TreasureHunt.dll
+D:\University\Tubes2_BeruburBuruBuru\src\obj\Debug\net7.0-windows\TreasureHunt.pdb
+D:\University\Tubes2_BeruburBuruBuru\src\obj\Debug\net7.0-windows\ref\TreasureHunt.dll

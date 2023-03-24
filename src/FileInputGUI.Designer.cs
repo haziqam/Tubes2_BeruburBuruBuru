@@ -52,6 +52,9 @@ namespace src
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.lbl_usedefaultpath = new System.Windows.Forms.Label();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.lbl_title = new System.Windows.Forms.Label();
+            this.lbl_namaKelompok = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -63,10 +66,10 @@ namespace src
             this.lbl_filename.AutoSize = true;
             this.lbl_filename.Font = new System.Drawing.Font("Open Sans Light", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.lbl_filename.ForeColor = System.Drawing.SystemColors.Window;
-            this.lbl_filename.Location = new System.Drawing.Point(101, 80);
+            this.lbl_filename.Location = new System.Drawing.Point(64, 101);
             this.lbl_filename.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
             this.lbl_filename.Name = "lbl_filename";
-            this.lbl_filename.Size = new System.Drawing.Size(197, 38);
+            this.lbl_filename.Size = new System.Drawing.Size(132, 26);
             this.lbl_filename.TabIndex = 0;
             this.lbl_filename.Text = "Insert file path";
             this.lbl_filename.Click += new System.EventHandler(this.lbl_filename_Click);
@@ -76,10 +79,10 @@ namespace src
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Open Sans Light", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label3.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.label3.Location = new System.Drawing.Point(101, 303);
+            this.label3.Location = new System.Drawing.Point(64, 226);
             this.label3.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(272, 38);
+            this.label3.Size = new System.Drawing.Size(184, 26);
             this.label3.TabIndex = 4;
             this.label3.Text = "Select customization";
             this.label3.Click += new System.EventHandler(this.label3_Click);
@@ -89,10 +92,10 @@ namespace src
             this.rdo_BFS.AutoSize = true;
             this.rdo_BFS.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.rdo_BFS.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.rdo_BFS.Location = new System.Drawing.Point(20, 66);
-            this.rdo_BFS.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
+            this.rdo_BFS.Location = new System.Drawing.Point(14, 40);
+            this.rdo_BFS.Margin = new System.Windows.Forms.Padding(1);
             this.rdo_BFS.Name = "rdo_BFS";
-            this.rdo_BFS.Size = new System.Drawing.Size(78, 36);
+            this.rdo_BFS.Size = new System.Drawing.Size(54, 25);
             this.rdo_BFS.TabIndex = 5;
             this.rdo_BFS.TabStop = true;
             this.rdo_BFS.Text = "BFS";
@@ -105,10 +108,10 @@ namespace src
             this.btn_browse.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btn_browse.Font = new System.Drawing.Font("Open Sans", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btn_browse.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btn_browse.Location = new System.Drawing.Point(305, 207);
-            this.btn_browse.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
+            this.btn_browse.Location = new System.Drawing.Point(232, 177);
+            this.btn_browse.Margin = new System.Windows.Forms.Padding(1);
             this.btn_browse.Name = "btn_browse";
-            this.btn_browse.Size = new System.Drawing.Size(187, 47);
+            this.btn_browse.Size = new System.Drawing.Size(113, 28);
             this.btn_browse.TabIndex = 8;
             this.btn_browse.Text = "BROWSE";
             this.btn_browse.UseVisualStyleBackColor = false;
@@ -118,12 +121,12 @@ namespace src
             // 
             this.btn_visualize.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(95)))), ((int)(((byte)(254)))));
             this.btn_visualize.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btn_visualize.Font = new System.Drawing.Font("Open Sans", 14F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point);
+            this.btn_visualize.Font = new System.Drawing.Font("Open Sans", 15.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point);
             this.btn_visualize.ForeColor = System.Drawing.Color.White;
-            this.btn_visualize.Location = new System.Drawing.Point(152, 634);
-            this.btn_visualize.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
+            this.btn_visualize.Location = new System.Drawing.Point(99, 427);
+            this.btn_visualize.Margin = new System.Windows.Forms.Padding(1);
             this.btn_visualize.Name = "btn_visualize";
-            this.btn_visualize.Size = new System.Drawing.Size(206, 48);
+            this.btn_visualize.Size = new System.Drawing.Size(165, 38);
             this.btn_visualize.TabIndex = 9;
             this.btn_visualize.Text = "VISUALIZE!";
             this.btn_visualize.UseVisualStyleBackColor = false;
@@ -142,10 +145,10 @@ namespace src
             this.panel1.Controls.Add(this.rdo_DFS);
             this.panel1.Controls.Add(this.lbl_TSP);
             this.panel1.Controls.Add(this.rdo_BFS);
-            this.panel1.Location = new System.Drawing.Point(46, 354);
-            this.panel1.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
+            this.panel1.Location = new System.Drawing.Point(25, 256);
+            this.panel1.Margin = new System.Windows.Forms.Padding(1);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(200, 250);
+            this.panel1.Size = new System.Drawing.Size(149, 150);
             this.panel1.TabIndex = 12;
             // 
             // lbl_algorithm
@@ -153,9 +156,10 @@ namespace src
             this.lbl_algorithm.AutoSize = true;
             this.lbl_algorithm.Font = new System.Drawing.Font("Open Sans Light", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.lbl_algorithm.ForeColor = System.Drawing.Color.Gray;
-            this.lbl_algorithm.Location = new System.Drawing.Point(43, 18);
+            this.lbl_algorithm.Location = new System.Drawing.Point(30, 11);
+            this.lbl_algorithm.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbl_algorithm.Name = "lbl_algorithm";
-            this.lbl_algorithm.Size = new System.Drawing.Size(111, 24);
+            this.lbl_algorithm.Size = new System.Drawing.Size(74, 17);
             this.lbl_algorithm.TabIndex = 12;
             this.lbl_algorithm.Text = "ALGORITHM";
             this.lbl_algorithm.Click += new System.EventHandler(this.lbl_algorithm_Click);
@@ -171,7 +175,8 @@ namespace src
             this.swtch_TSP.DisabledCheckColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(65)))), ((int)(((byte)(177)))), ((int)(((byte)(225)))));
             this.swtch_TSP.DisabledUnCheckColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(205)))), ((int)(((byte)(205)))), ((int)(((byte)(205)))));
             this.swtch_TSP.IsDerivedStyle = true;
-            this.swtch_TSP.Location = new System.Drawing.Point(22, 200);
+            this.swtch_TSP.Location = new System.Drawing.Point(15, 120);
+            this.swtch_TSP.Margin = new System.Windows.Forms.Padding(2);
             this.swtch_TSP.Name = "swtch_TSP";
             this.swtch_TSP.Size = new System.Drawing.Size(58, 22);
             this.swtch_TSP.Style = MetroSet_UI.Enums.Style.Light;
@@ -190,10 +195,10 @@ namespace src
             this.rdo_DFS.AutoSize = true;
             this.rdo_DFS.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.rdo_DFS.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.rdo_DFS.Location = new System.Drawing.Point(20, 130);
-            this.rdo_DFS.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
+            this.rdo_DFS.Location = new System.Drawing.Point(14, 78);
+            this.rdo_DFS.Margin = new System.Windows.Forms.Padding(1);
             this.rdo_DFS.Name = "rdo_DFS";
-            this.rdo_DFS.Size = new System.Drawing.Size(81, 36);
+            this.rdo_DFS.Size = new System.Drawing.Size(56, 25);
             this.rdo_DFS.TabIndex = 9;
             this.rdo_DFS.TabStop = true;
             this.rdo_DFS.Text = "DFS";
@@ -205,9 +210,10 @@ namespace src
             this.lbl_TSP.AutoSize = true;
             this.lbl_TSP.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.lbl_TSP.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.lbl_TSP.Location = new System.Drawing.Point(101, 194);
+            this.lbl_TSP.Location = new System.Drawing.Point(71, 116);
+            this.lbl_TSP.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbl_TSP.Name = "lbl_TSP";
-            this.lbl_TSP.Size = new System.Drawing.Size(53, 32);
+            this.lbl_TSP.Size = new System.Drawing.Size(36, 21);
             this.lbl_TSP.TabIndex = 10;
             this.lbl_TSP.Text = "TSP";
             // 
@@ -220,19 +226,20 @@ namespace src
             this.panel2.Controls.Add(this.swtch_showSteps);
             this.panel2.Controls.Add(this.lbl_showSteps);
             this.panel2.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.panel2.Location = new System.Drawing.Point(295, 354);
-            this.panel2.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
+            this.panel2.Location = new System.Drawing.Point(191, 256);
+            this.panel2.Margin = new System.Windows.Forms.Padding(1);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(200, 250);
+            this.panel2.Size = new System.Drawing.Size(149, 150);
             this.panel2.TabIndex = 13;
             // 
             // lbl_pausetime
             // 
             this.lbl_pausetime.AutoSize = true;
             this.lbl_pausetime.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lbl_pausetime.Location = new System.Drawing.Point(17, 147);
+            this.lbl_pausetime.Location = new System.Drawing.Point(12, 88);
+            this.lbl_pausetime.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbl_pausetime.Name = "lbl_pausetime";
-            this.lbl_pausetime.Size = new System.Drawing.Size(130, 32);
+            this.lbl_pausetime.Size = new System.Drawing.Size(85, 21);
             this.lbl_pausetime.TabIndex = 17;
             this.lbl_pausetime.Text = "Pause time";
             this.lbl_pausetime.Click += new System.EventHandler(this.lbl_pausetime_Click);
@@ -242,9 +249,10 @@ namespace src
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Open Sans Light", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label1.ForeColor = System.Drawing.Color.Gray;
-            this.label1.Location = new System.Drawing.Point(32, 17);
+            this.label1.Location = new System.Drawing.Point(22, 10);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(135, 24);
+            this.label1.Size = new System.Drawing.Size(91, 17);
             this.label1.TabIndex = 14;
             this.label1.Text = "VISUALIZATION";
             // 
@@ -257,9 +265,10 @@ namespace src
             "500 ms",
             "1000 ms",
             "2000 ms"});
-            this.cbo_ms.Location = new System.Drawing.Point(21, 195);
+            this.cbo_ms.Location = new System.Drawing.Point(15, 117);
+            this.cbo_ms.Margin = new System.Windows.Forms.Padding(2);
             this.cbo_ms.Name = "cbo_ms";
-            this.cbo_ms.Size = new System.Drawing.Size(119, 33);
+            this.cbo_ms.Size = new System.Drawing.Size(84, 23);
             this.cbo_ms.TabIndex = 16;
             this.cbo_ms.SelectedIndexChanged += new System.EventHandler(this.cbo_ms_SelectedIndexChanged);
             // 
@@ -274,7 +283,8 @@ namespace src
             this.swtch_showSteps.DisabledCheckColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(65)))), ((int)(((byte)(177)))), ((int)(((byte)(225)))));
             this.swtch_showSteps.DisabledUnCheckColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(205)))), ((int)(((byte)(205)))), ((int)(((byte)(205)))));
             this.swtch_showSteps.IsDerivedStyle = true;
-            this.swtch_showSteps.Location = new System.Drawing.Point(22, 111);
+            this.swtch_showSteps.Location = new System.Drawing.Point(15, 67);
+            this.swtch_showSteps.Margin = new System.Windows.Forms.Padding(2);
             this.swtch_showSteps.Name = "swtch_showSteps";
             this.swtch_showSteps.Size = new System.Drawing.Size(58, 22);
             this.swtch_showSteps.Style = MetroSet_UI.Enums.Style.Light;
@@ -293,9 +303,10 @@ namespace src
             this.lbl_showSteps.AutoSize = true;
             this.lbl_showSteps.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.lbl_showSteps.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.lbl_showSteps.Location = new System.Drawing.Point(16, 63);
+            this.lbl_showSteps.Location = new System.Drawing.Point(11, 38);
+            this.lbl_showSteps.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbl_showSteps.Name = "lbl_showSteps";
-            this.lbl_showSteps.Size = new System.Drawing.Size(134, 32);
+            this.lbl_showSteps.Size = new System.Drawing.Size(89, 21);
             this.lbl_showSteps.TabIndex = 11;
             this.lbl_showSteps.Text = "Show steps";
             this.lbl_showSteps.Click += new System.EventHandler(this.lbl_showSteps_Click);
@@ -306,18 +317,20 @@ namespace src
             this.txt_filename.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txt_filename.Font = new System.Drawing.Font("Open Sans Light", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.txt_filename.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.txt_filename.Location = new System.Drawing.Point(36, 130);
+            this.txt_filename.Location = new System.Drawing.Point(25, 133);
+            this.txt_filename.Margin = new System.Windows.Forms.Padding(2);
             this.txt_filename.Name = "txt_filename";
-            this.txt_filename.Size = new System.Drawing.Size(456, 39);
+            this.txt_filename.Size = new System.Drawing.Size(319, 26);
             this.txt_filename.TabIndex = 15;
             this.txt_filename.TextChanged += new System.EventHandler(this.txt_filename_TextChanged_1);
             // 
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(46, 302);
+            this.pictureBox1.Location = new System.Drawing.Point(25, 225);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(40, 40);
+            this.pictureBox1.Size = new System.Drawing.Size(28, 24);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 16;
             this.pictureBox1.TabStop = false;
@@ -325,9 +338,10 @@ namespace src
             // pictureBox2
             // 
             this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.Location = new System.Drawing.Point(46, 78);
+            this.pictureBox2.Location = new System.Drawing.Point(25, 100);
+            this.pictureBox2.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(40, 40);
+            this.pictureBox2.Size = new System.Drawing.Size(28, 24);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox2.TabIndex = 17;
             this.pictureBox2.TabStop = false;
@@ -337,18 +351,55 @@ namespace src
             this.lbl_usedefaultpath.AutoSize = true;
             this.lbl_usedefaultpath.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.lbl_usedefaultpath.ForeColor = System.Drawing.Color.Red;
-            this.lbl_usedefaultpath.Location = new System.Drawing.Point(39, 176);
+            this.lbl_usedefaultpath.Location = new System.Drawing.Point(27, 158);
+            this.lbl_usedefaultpath.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbl_usedefaultpath.Name = "lbl_usedefaultpath";
-            this.lbl_usedefaultpath.Size = new System.Drawing.Size(212, 21);
+            this.lbl_usedefaultpath.Size = new System.Drawing.Size(160, 13);
             this.lbl_usedefaultpath.TabIndex = 18;
             this.lbl_usedefaultpath.Text = "use default path (test folder): ";
             // 
+            // panel3
+            // 
+            this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(118)))), ((int)(((byte)(229)))), ((int)(((byte)(252)))));
+            this.panel3.Location = new System.Drawing.Point(25, 27);
+            this.panel3.Margin = new System.Windows.Forms.Padding(2);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(7, 42);
+            this.panel3.TabIndex = 19;
+            // 
+            // lbl_title
+            // 
+            this.lbl_title.AutoSize = true;
+            this.lbl_title.Font = new System.Drawing.Font("Open Sans", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.lbl_title.ForeColor = System.Drawing.Color.White;
+            this.lbl_title.Location = new System.Drawing.Point(35, 25);
+            this.lbl_title.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lbl_title.Name = "lbl_title";
+            this.lbl_title.Size = new System.Drawing.Size(267, 33);
+            this.lbl_title.TabIndex = 20;
+            this.lbl_title.Text = "Treasure Hunt Solver";
+            // 
+            // lbl_namaKelompok
+            // 
+            this.lbl_namaKelompok.AutoSize = true;
+            this.lbl_namaKelompok.Font = new System.Drawing.Font("Open Sans Light", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lbl_namaKelompok.ForeColor = System.Drawing.Color.Gray;
+            this.lbl_namaKelompok.Location = new System.Drawing.Point(43, 54);
+            this.lbl_namaKelompok.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lbl_namaKelompok.Name = "lbl_namaKelompok";
+            this.lbl_namaKelompok.Size = new System.Drawing.Size(143, 15);
+            this.lbl_namaKelompok.TabIndex = 21;
+            this.lbl_namaKelompok.Text = "BY: BERUBUR BURU-BURU";
+            // 
             // FileInputGUI
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(36)))), ((int)(((byte)(41)))));
-            this.ClientSize = new System.Drawing.Size(528, 711);
+            this.ClientSize = new System.Drawing.Size(370, 487);
+            this.Controls.Add(this.lbl_namaKelompok);
+            this.Controls.Add(this.lbl_title);
+            this.Controls.Add(this.panel3);
             this.Controls.Add(this.lbl_usedefaultpath);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.pictureBox1);
@@ -359,7 +410,7 @@ namespace src
             this.Controls.Add(this.btn_browse);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.lbl_filename);
-            this.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
+            this.Margin = new System.Windows.Forms.Padding(1);
             this.Name = "FileInputGUI";
             this.Text = "TreasureHunt";
             this.Load += new System.EventHandler(this.GUI_Load);
@@ -397,5 +448,8 @@ namespace src
         private Label label1;
         private Label lbl_pausetime;
         private Label lbl_usedefaultpath;
+        private Panel panel3;
+        private Label lbl_title;
+        private Label lbl_namaKelompok;
     }
 }

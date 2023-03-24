@@ -117,7 +117,7 @@ namespace src
                 {
                     // Nanti pas bin nya dipindahin, ini jadi gini
                     // filePath = "../test/" + filePath;
-                    filePath = "../../../../test/" + filePath;
+                    filePath = "../test/" + filePath;
                 }
                 
                 treasureHunt = new TreasureHunt(filePath);
