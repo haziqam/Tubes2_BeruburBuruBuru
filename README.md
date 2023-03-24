@@ -10,7 +10,7 @@ Pengaplikasian Algoritma BFS dan DFS dalam Implementasi Treasure-Hunt Solver
 * [Link Demo Program](#link-demo-program)
 
 ## Deskripsi Singkat Program
-Dalam tugas besar ini, Anda akan diminta untuk membangun sebuah aplikasi GUI sederhana yang mengimplementasikan Treasure-Hunt Solver menggunkan algoritma Breadth First Search (BFS) dan Depth First Search (DFS).
+Dalam tugas besar ini, Anda akan diminta untuk membangun sebuah aplikasi GUI sederhana yang mengimplementasikan Treasure-Hunt Solver menggunakan algoritma Breadth First Search (BFS) dan Depth First Search (DFS).
 
 ## Requirement Program
     - Windows Operating System
@@ -19,8 +19,8 @@ Dalam tugas besar ini, Anda akan diminta untuk membangun sebuah aplikasi GUI sed
 
 ## Cara Menjalankan Program
 1. Lakukan git clone terhadap repositori ini atau Unduh ZIP
-2. Buka folder `src/bin/Debug/net7.0-windows` pada folder repositori
-3. Jalankan file `src.exe`
+2. Buka folder `bin` pada folder repositori
+3. Jalankan file `TreasureHunt.exe`
 
 ## Authors
 
